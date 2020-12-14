@@ -64,6 +64,46 @@ class DatabaseHelper(context: Context)
         return false
     }
 
+    //Vérifie sur l'utilisateur existe lors de la connexion
+    fun connexion(login : String, mdp : String) : Boolean{
+        val columns = arrayOf(COLUMN_ID)
+        val action = this.readableDatabase
+        val selection = "$COLUMN_LOGIN = ? AND $COLUMN_MDP = ?"
+        val selectionArgs = arrayOf(login,mdp)
+        val cursor = action.query(
+            TABLE_NAME,
+            columns,
+            selection,
+            selectionArgs, null, null, null
+        )
+        val pronouns = cursor.count
+        cursor.close()
+        action.close()
+        if (pronouns > 0) {
+            return true
+        }
+        return false
+
+    }
+
+    //Trouver l'utilisateur à partir de son login et de son mot de passe
+    //S'il existe, cela retourne son id
+    fun getUser(login : String, mdp : String) : Int{
+        val action = this.readableDatabase
+        val cursor = action.query(
+            TABLE_NAME, null, "$COLUMN_LOGIN = ? AND $COLUMN_MDP = ?", arrayOf(login,mdp),
+            null, null, null
+        )
+        if (cursor.getCount() < 1) {
+            return 0
+        }
+        else {
+            cursor.moveToFirst()
+            val idUser : Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
+            return idUser
+        }
+    }
+
 
 
     companion object {

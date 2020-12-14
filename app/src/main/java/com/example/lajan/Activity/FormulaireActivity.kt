@@ -1,6 +1,7 @@
 package com.example.lajan.Activity
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,6 +11,7 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import com.example.lajan.Bdd.DatabaseHelper
 import com.example.lajan.Class.Utilisateur
+import com.example.lajan.ConnexionActivity
 import com.example.lajan.R
 import com.example.lajan.Utils.Utils
 import kotlinx.android.synthetic.main.activity_formulaire.*
@@ -41,6 +43,8 @@ class FormulaireActivity : AppCompatActivity() {
             val image = BitmapFactory.decodeResource(resources, R.drawable.img_profil)
             val image_profil = Utils.getBytes(image)
             databaseHandler.addUser(user, image_profil)
+            val connexion = Intent(this, ConnexionActivity::class.java)
+            startActivity(connexion)
         }
     }
 

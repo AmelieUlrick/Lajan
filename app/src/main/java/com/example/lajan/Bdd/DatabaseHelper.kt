@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.database.sqlite.SQLiteQueryBuilder
 import com.example.lajan.Class.Utilisateur
 
 class DatabaseHelper(context: Context)
@@ -105,6 +106,26 @@ class DatabaseHelper(context: Context)
             val idUser : Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID))
             return idUser
         }
+    }
+
+    fun getImage(user:Int): ByteArray? {
+        val db = this.writableDatabase
+        val qb = SQLiteQueryBuilder()
+        val sqlSelect = arrayOf(COLUMN_IMAGE)
+        /* val cursor = qb.query(
+             TABLE_NAME, null, "$COLUMN_ID = ?", arrayOf(user.toString()),
+             null, null, null
+         )*/
+        qb.tables = TABLE_NAME
+        val c = qb.query(db,sqlSelect,"id_user = ?", arrayOf(user.toString()),null,null,null)
+        var result :ByteArray?=null
+        //var result :ByteArray = ByteArray(1000000)
+        if(c.moveToFirst()){
+            do{
+                result = c.getBlob((c.getColumnIndex(COLUMN_IMAGE)))
+            }while(c.moveToNext())
+        }
+        return result
     }
 
 

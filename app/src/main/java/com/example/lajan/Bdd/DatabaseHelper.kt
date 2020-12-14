@@ -144,15 +144,24 @@ class DatabaseHelper(context: Context)
              null, null, null
          )*/
         qb.tables = TABLE_NAME
-        val c = qb.query(db,sqlSelect,"id_user = ?", arrayOf(user.toString()),null,null,null)
+        val c = qb.query(db,sqlSelect,"id_utilisateur = ?", arrayOf(user.toString()),null,null,null)
         var result :ByteArray?=null
-        //var result :ByteArray = ByteArray(1000000)
         if(c.moveToFirst()){
             do{
                 result = c.getBlob((c.getColumnIndex(COLUMN_IMAGE)))
             }while(c.moveToNext())
         }
         return result
+    }
+
+    fun updateImage(image:ByteArray,user:Int)
+    {
+        val database = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(COLUMN_IMAGE, image)
+        database.update(TABLE_NAME, cv, "$COLUMN_ID = ?",
+            arrayOf(user.toString()))
+        database.close()
     }
 
 

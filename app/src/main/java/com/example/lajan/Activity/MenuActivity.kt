@@ -21,7 +21,7 @@ class MenuActivity : AppCompatActivity() {
 
         val intent: Intent = intent
         //val Nom = intent.getStringExtra("nom")
-        val idUser = intent.getIntExtra("id", 0)
+        //val idUser = intent.getIntExtra("id", 0)
 
         makeCurrentFragment(homeFragment)
 
@@ -29,14 +29,15 @@ class MenuActivity : AppCompatActivity() {
             when (it.itemId){
                 R.id.navigation_home -> {
                     makeCurrentFragment(homeFragment)
-                    //intent.getIntExtra("id",idUser)
+                    intent.getIntExtra("idUser",0)
                 }
                 R.id.navigation_profil -> {
                     makeCurrentFragment(profilFragment)
-                    //intent.getIntExtra("id",idUser)
+                    intent.getIntExtra("idUser",0)
                 }
                 R.id.navigation_carte -> {
                     makeCurrentFragment(CarteFragment)
+                    intent.getIntExtra("idUser",0)
                     intent.getStringExtra("nom")
                 }
             }

@@ -48,7 +48,7 @@ class FormulaireCarte : Fragment() {
         }
 
         view.form_Carte.setOnClickListener {
-            ajouterLaCarte()
+            //ajouterLaCarte()
             /*val pageListCarte = CarteFragment()
             val fragmentManager = activity!!.supportFragmentManager
             fragmentManager.beginTransaction().apply {

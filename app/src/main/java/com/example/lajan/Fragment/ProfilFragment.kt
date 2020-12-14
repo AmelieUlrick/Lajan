@@ -1,6 +1,7 @@
 package com.example.lajan.Fragment
 
 import android.app.Activity
+import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -50,14 +51,12 @@ class ProfilFragment : Fragment() {
         {
             exit(0)
         }
-
-
         return view
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val pickedImage = data?.data
-        if(requestCode == SELECT_PHOTO  && resultCode == Activity.RESULT_OK && data != null)
+        if(requestCode == SELECT_PHOTO  && resultCode == RESULT_OK && data != null)
             imgProfil.setImageURI(pickedImage)
         if (save_img != null) {
             save_img.isEnabled = true

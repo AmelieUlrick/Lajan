@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_profil.*
 
 class ProfilFragment : Fragment() {
 
-    private val SELECT_PHOTO =  3000
+    private val SELECT_PHOTO =  1000
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,11 +31,13 @@ class ProfilFragment : Fragment() {
         val bitmap = Utils.getImage(databaseHandler.getImage(IduserP)!!)
         imgProfil.setImageBitmap(bitmap)
 
-        save_img.setOnClickListener()
+        select_img.setOnClickListener()
         {
             val SavPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(SavPhoto,SELECT_PHOTO)
         }
+
+
         return view
     }
 

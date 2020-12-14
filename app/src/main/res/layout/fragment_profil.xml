@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"/>
 
         <Button
-            android:id="@+id/SELECT"
+            android:id="@+id/select_img"
             android:text="SELECT"
             android:layout_weight = "1"
             android:layout_width="0dp"

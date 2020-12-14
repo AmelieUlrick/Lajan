@@ -166,7 +166,7 @@ class DatabaseHelper(context: Context)
         database.close()
     }
 
-    fun addCarte(carte : CarteBancaire){
+    fun addCard(carte : CarteBancaire){
         val action = this.writableDatabase
 
         val cv = ContentValues()
@@ -190,6 +190,22 @@ class DatabaseHelper(context: Context)
 
         action.insert(TABLE_COMPTE, null, cv)
         action.close()
+    }
+
+    fun getIdCarte() : Int{
+        val db = this.readableDatabase
+        val cursor = db.query(
+            TABLE_CARTE, null, null, null,
+            null, null, null
+        )
+        if (cursor.getCount() < 1) {
+            return 0
+        }
+        else {
+            cursor.moveToLast()
+            val IdCarte: Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_CARTE ))
+            return IdCarte
+        }
     }
 
 

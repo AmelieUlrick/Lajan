@@ -208,7 +208,21 @@ class DatabaseHelper(context: Context)
         }
     }
 
-
+    fun getMdp(email: String): String {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            TABLE_NAME, null, "$COLUMN_ADRESSE_MAIL = ?", arrayOf(email),
+            null, null, null
+        )
+        if (cursor.getCount() < 1) {
+            return "erreur pas de compte "
+        }
+        else {
+            cursor.moveToFirst()
+            val mdp12: String = cursor.getString(cursor.getColumnIndex(COLUMN_MDP))
+            return mdp12
+        }
+    }
 
     companion object {
         private val DATABASE_VERSION = 1

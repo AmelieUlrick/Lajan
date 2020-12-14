@@ -40,7 +40,6 @@ class FormulaireActivity : AppCompatActivity() {
             val image = BitmapFactory.decodeResource(resources, R.drawable.ic_image_profil)
             val image_profil = Utils.getBytes(image)
             databaseHandler.addUser(user, image_profil)
-
         }
     }
 

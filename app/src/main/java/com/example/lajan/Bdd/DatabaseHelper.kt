@@ -5,6 +5,8 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteQueryBuilder
+import com.example.lajan.Class.CarteBancaire
+import com.example.lajan.Class.Compte
 import com.example.lajan.Class.Utilisateur
 
 class DatabaseHelper(context: Context)
@@ -162,6 +164,32 @@ class DatabaseHelper(context: Context)
         database.update(TABLE_NAME, cv, "$COLUMN_ID = ?",
             arrayOf(user.toString()))
         database.close()
+    }
+
+    fun addCarte(carte : CarteBancaire){
+        val action = this.writableDatabase
+
+        val cv = ContentValues()
+        cv.put(COLUMN_NUMERO_CARTE,carte.numeroCarte)
+        cv.put(COLUMN_DATE_EXP,carte.dateExpiration)
+        cv.put(COLUMN_TYPE,carte.typeCarte)
+        cv.put(COLUMN_KEY_CARTE,carte.keyUserCarte)
+
+        action.insert(TABLE_CARTE, null, cv)
+        action.close()
+    }
+
+    fun addCompte(compte : Compte){
+        val action = this.writableDatabase
+
+        val cv = ContentValues()
+        cv.put(COLUMN_SOLDE,compte.solde)
+        cv.put(COLUMN_DECOUVERT,compte.decouvert)
+        cv.put(COLUMN_KEY_CARTE,compte.keyCarte)
+        cv.put(COLUMN_KEY_USER_COMPTE,compte.keyUserCpt)
+
+        action.insert(TABLE_COMPTE, null, cv)
+        action.close()
     }
 
 

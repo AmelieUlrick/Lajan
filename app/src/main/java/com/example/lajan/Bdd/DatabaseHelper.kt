@@ -4,8 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.example.lajan.Class.CarteBancaire
-import com.example.lajan.Class.Compte
+import android.database.sqlite.SQLiteQueryBuilder
 import com.example.lajan.Class.Utilisateur
 
 class DatabaseHelper(context: Context)
@@ -136,47 +135,35 @@ class DatabaseHelper(context: Context)
         }
     }
 
-    //Créer une Carte Bancaire
-    fun addCard(carte : CarteBancaire){
-        val action = this.writableDatabase
-        val cv = ContentValues()
-        cv.put(COLUMN_NUMERO_CARTE,carte.numeroCarte)
-        cv.put(COLUMN_DATE_EXP,carte.dateExpiration)
-        cv.put(COLUMN_TYPE,carte.typeCarte)
-        cv.put(COLUMN_KEY_USER_CARTE,carte.keyUserCarte)
-
-        action.insert(TABLE_CARTE, null, cv)
-        action.close()
-    }
-
-    //Recherche l'id d'une Carte Bancaire dans la bdd
-    fun getIdCarte() : Int{
-        val action = this.readableDatabase
-        val cursor = action.query(
-            TABLE_CARTE, null, null, null,
-            null, null, null
-        )
-        if (cursor.getCount() < 1) {
-            return 0
+    fun getImage(user:Int): ByteArray? {
+        val db = this.writableDatabase
+        val qb = SQLiteQueryBuilder()
+        val sqlSelect = arrayOf(COLUMN_IMAGE)
+        /* val cursor = qb.query(
+             TABLE_NAME, null, "$COLUMN_ID = ?", arrayOf(user.toString()),
+             null, null, null
+         )*/
+        qb.tables = TABLE_NAME
+        val c = qb.query(db,sqlSelect,"id_utilisateur = ?", arrayOf(user.toString()),null,null,null)
+        var result :ByteArray?=null
+        if(c.moveToFirst()){
+            do{
+                result = c.getBlob((c.getColumnIndex(COLUMN_IMAGE)))
+            }while(c.moveToNext())
         }
-        else {
-            cursor.moveToLast()
-            val idCarte : Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_CARTE ))
-            return idCarte
-        }
+        return result
     }
 
-    fun addCompte(compte : Compte){
-        val action = this.writableDatabase
+    fun updateImage(image:ByteArray,user:Int)
+    {
+        val database = this.writableDatabase
         val cv = ContentValues()
-        cv.put(COLUMN_DECOUVERT,compte.solde)
-        cv.put(COLUMN_SOLDE,compte.decouvert)
-        cv.put(COLUMN_KEY_CARTE,compte.keyCarte)
-        cv.put(COLUMN_KEY_USER_COMPTE,compte.keyUserCpt)
-
-        action.insert(TABLE_COMPTE, null, cv)
-        action.close()
+        cv.put(COLUMN_IMAGE, image)
+        database.update(TABLE_NAME, cv, "$COLUMN_ID = ?",
+            arrayOf(user.toString()))
+        database.close()
     }
+
 
 
     companion object {

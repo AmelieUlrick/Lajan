@@ -1,5 +1,6 @@
 package com.example.lajan.Activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -18,6 +19,10 @@ class MenuActivity : AppCompatActivity() {
         val profilFragment = ProfilFragment()
         val CarteFragment = CarteFragment()
 
+        val intent: Intent = intent
+        //val Nom = intent.getStringExtra("nom")
+        //val idUser = intent.getIntExtra("id", 0)
+
         makeCurrentFragment(homeFragment)
 
         //Récupère les données envoyées
@@ -31,15 +36,16 @@ class MenuActivity : AppCompatActivity() {
             when (it.itemId){
                 R.id.navigation_home -> {
                     makeCurrentFragment(homeFragment)
-                    //intent.getIntExtra("id",data2)
+                    intent.getIntExtra("idUser",0)
                 }
                 R.id.navigation_profil -> {
                     makeCurrentFragment(profilFragment)
-                    //intent.getIntExtra("id",data2)
+                    intent.getIntExtra("idUser",0)
                 }
                 R.id.navigation_carte -> {
                     makeCurrentFragment(CarteFragment)
-                    //intent.putExtra("id",data2)
+                    intent.getIntExtra("idUser",0)
+                    intent.getStringExtra("nom")
                 }
             }
             true

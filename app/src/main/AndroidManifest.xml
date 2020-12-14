@@ -14,8 +14,8 @@
         android:theme="@style/Theme.Lajan">
         <activity android:name=".Activity.RecupererMdp"></activity>
         <activity android:name=".Activity.MenuActivity" />
-        <activity android:name=".ConnexionActivity" />
-        <activity android:name=".Activity.FormulaireActivity">
+        <activity android:name=".Activity.FormulaireActivity" />
+        <activity android:name=".ConnexionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

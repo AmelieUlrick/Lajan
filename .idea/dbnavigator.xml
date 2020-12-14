@@ -16,18 +16,14 @@
       <scope value="GLOBAL" />
       <destination value="FILE" />
       <format value="EXCEL" />
-      <charset value="UTF-8" />
+      <charset value="windows-1252" />
     </export-instructions>
   </component>
   <component name="DBNavigator.Project.DatabaseBrowserManager">
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes>
-      <connection connection-id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c">
-        <schema name="main" object-types="view, table, index, dataset trigger, constraint, column" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c">
@@ -35,9 +31,7 @@
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c" object-ref="schemas/main/tables/Utilisateur" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c" />

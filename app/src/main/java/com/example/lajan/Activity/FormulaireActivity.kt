@@ -43,8 +43,8 @@ class FormulaireActivity : AppCompatActivity() {
             val image = BitmapFactory.decodeResource(resources, R.drawable.img_profil)
             val image_profil = Utils.getBytes(image)
             databaseHandler.addUser(user, image_profil)
-            val connexion = Intent(this, ConnexionActivity::class.java)
-            startActivity(connexion)
+            val intent = Intent(this, ConnexionActivity::class.java)
+            startActivity(intent)
         }
     }
 

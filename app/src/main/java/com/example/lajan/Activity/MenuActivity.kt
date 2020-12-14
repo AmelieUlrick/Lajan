@@ -20,7 +20,14 @@ class MenuActivity : AppCompatActivity() {
 
         makeCurrentFragment(homeFragment)
 
+        //Récupère les données envoyées
+        val intent = intent
+        val dataIdUser = intent.getIntExtra("idUser", 0)
+
         bottomNav.setOnNavigationItemSelectedListener{
+
+            //Envoie l'id de l'utilisateur dans chaque fragment du menu
+            intent.putExtra("idUser", 0)
             when (it.itemId){
                 R.id.navigation_home -> {
                     makeCurrentFragment(homeFragment)

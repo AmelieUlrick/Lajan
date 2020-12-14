@@ -21,7 +21,13 @@ class CarteFragment : Fragment() {
 
         val view =  inflater.inflate(R.layout.fragment_carte, container, false)
 
+        val intent = requireActivity().intent
+        val idUser = intent.getIntExtra("idUser", 0)
+
         view.recycler_addCard.setOnClickListener{
+
+            intent.putExtra("idUser", 0)
+
             val creerCarte = FormulaireCarte()
             val fragmenManager = activity!!.supportFragmentManager
             fragmenManager.beginTransaction().apply {

@@ -23,21 +23,25 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="true" />
-    <loaded-nodes />
+    <loaded-nodes>
+      <connection connection-id="b3c7654c-5a44-42ac-841b-0ccde8cb00bb">
+        <schema name="main" object-types="view, column, dataset trigger, constraint, table, index" />
+      </connection>
+    </loaded-nodes>
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
-    <connection id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c">
-      <console name="Connection" type="STANDARD" schema="" session="Main" />
+    <connection id="b3c7654c-5a44-42ac-841b-0ccde8cb00bb">
+      <console name="Connection 1" type="STANDARD" schema="main" session="Main" />
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
     <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
-    <connection id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c" />
+    <connection id="b3c7654c-5a44-42ac-841b-0ccde8cb00bb" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c" dataset="main.Utilisateur" active-filter-id="EMPTY_FILTER" />
+    <filter-actions connection-id="b3c7654c-5a44-42ac-841b-0ccde8cb00bb" dataset="main.Utilisateur" active-filter-id="" />
   </component>
   <component name="DBNavigator.Project.EditorStateManager">
     <last-used-providers />
@@ -65,9 +69,9 @@
   </component>
   <component name="DBNavigator.Project.Settings">
     <connections>
-      <connection id="74f59b57-2eac-4eb4-8bb0-38c0e11c2b7c" active="true">
+      <connection id="b3c7654c-5a44-42ac-841b-0ccde8cb00bb" active="true">
         <database>
-          <name value="Connection" />
+          <name value="Connection 1" />
           <description value="" />
           <database-type value="SQLITE" />
           <config-type value="BASIC" />
@@ -80,7 +84,7 @@
           <port value="1234" />
           <database value="database" />
           <files>
-            <file path="$USER_HOME$/Desktop/lajan.db" schema="main" />
+            <file path="C:\Users\Ameliie\Downloads\lajan.db" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />

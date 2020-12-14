@@ -33,12 +33,12 @@ class FormulaireActivity : AppCompatActivity() {
         var user = Utilisateur(
                 Prenom = prenom_ed.text.toString().trim(),
                 Nom = nom_ed.text.toString().trim(),
-                addresse_mail = adresse_mail_ed.text.toString().trim(),
+                adresse_mail = adresse_mail_ed.text.toString().trim(),
                 login = login_ed.text.toString().trim(),
                 mdp = password_ed.text.toString().trim())
 
         if (NomVef() && PrenomVef() && PasswordVef() && (AdressVef() && Patterns.EMAIL_ADDRESS.matcher(adresse_mail_ed.text.toString().trim()).matches())) {
-            val image = BitmapFactory.decodeResource(resources, R.drawable.ic_image_profil)
+            val image = BitmapFactory.decodeResource(resources, R.drawable.img_profil)
             val image_profil = Utils.getBytes(image)
             databaseHandler.addUser(user, image_profil)
         }

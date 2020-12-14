@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lajan">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -10,9 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Lajan">
         <activity android:name=".Activity.MenuActivity"></activity>
-        <activity android:name=".Activity.FormulaireActivity" />
+
         <activity android:name=".ConnexionActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activity.FormulaireActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

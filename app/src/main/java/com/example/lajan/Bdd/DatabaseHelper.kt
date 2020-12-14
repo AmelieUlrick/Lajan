@@ -38,7 +38,7 @@ class DatabaseHelper(context: Context)
 
         values.put(COLUMN_PRENOM, utilisateur.Prenom)
         values.put(COLUMN_NOM, utilisateur.Nom)
-        values.put(COLUMN_ADRESSE_MAIL, utilisateur.addresse_mail)
+        values.put(COLUMN_ADRESSE_MAIL, utilisateur.adresse_mail)
         values.put(COLUMN_LOGIN, utilisateur.login)
         values.put(COLUMN_MDP, utilisateur.mdp)
         values.put(COLUMN_IMAGE,image)
@@ -47,11 +47,11 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
-    fun addrForBdd(address_mail: String) : Boolean {
+    fun addrForBdd(adress_mail: String) : Boolean {
         val columns = arrayOf(COLUMN_ID)
         val db = this.readableDatabase
         val selection = "$COLUMN_ADRESSE_MAIL = ? "
-        val selectionArgs = arrayOf(address_mail)
+        val selectionArgs = arrayOf(adress_mail)
         val cursor = db.query(
                 TABLE_NAME,
                 columns,
@@ -119,7 +119,7 @@ class DatabaseHelper(context: Context)
         private val COLUMN_ID = "id_utilisateur"
         private val COLUMN_PRENOM = "Prenom"
         private val COLUMN_NOM = " Nom"
-        private val COLUMN_ADRESSE_MAIL = "addresse_mail"
+        private val COLUMN_ADRESSE_MAIL = "adresse_mail"
         private val COLUMN_LOGIN = "login"
         private val COLUMN_MDP = "mdp"
         private val COLUMN_IMAGE ="image_data"

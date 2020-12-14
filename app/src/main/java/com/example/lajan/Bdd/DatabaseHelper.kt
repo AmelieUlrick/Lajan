@@ -19,15 +19,42 @@ class DatabaseHelper(context: Context)
             + COLUMN_IMAGE + " BLOB"
             + ")"
             )
+    //Création table Carte Bancaire
+    private val CREATE_PRODUCTS_TABLE_CARTE = ("CREATE TABLE " +
+            TABLE_CARTE + "(" +
+            COLUMN_ID_CARTE +  " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NUMERO_CARTE + " INTEGER, "
+            + COLUMN_DATE_EXP + " INTEGER, "
+            + COLUMN_TYPE + " TEXT, "
+            + COLUMN_KEY_USER_CARTE + " INTEGER, "
+            + " FOREIGN KEY ("+ COLUMN_KEY_USER_CARTE+") REFERENCES "+ TABLE_NAME +" ("+ COLUMN_ID +")"
+            + ")"
+            )
+    //Création table Compte
+    private val CREATE_PRODUCTS_TABLE_COMPTE = ("CREATE TABLE " +
+            TABLE_COMPTE + "(" +
+            COLUMN_ID_COMPTE + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_SOLDE + " REAL,"
+            + COLUMN_DECOUVERT + " REAL, "
+            + COLUMN_KEY_CARTE + " INTEGER, "
+            + COLUMN_KEY_USER_COMPTE + " INTEGER, "
+            + " FOREIGN KEY ("+ COLUMN_KEY_CARTE+") REFERENCES "+ TABLE_CARTE +" ("+ COLUMN_ID_CARTE +")"
+            + " FOREIGN KEY ("+ COLUMN_KEY_USER_COMPTE+") REFERENCES "+ TABLE_NAME +" ("+ COLUMN_ID +")"
+            + ")"
+            )
 
     private val DROP_USER_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
+    private val DROP_USER_TABLE_CARTE = "DROP TABLE IF EXISTS $TABLE_CARTE"
+    private val DROP_USER_TABLE_COMPTE = "DROP TABLE IF EXISTS $TABLE_COMPTE"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_PRODUCTS_TABLE)
+        db.execSQL(CREATE_PRODUCTS_TABLE_CARTE)
+        db.execSQL(CREATE_PRODUCTS_TABLE_COMPTE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL(DROP_USER_TABLE)
+        db.execSQL(DROP_USER_TABLE_CARTE)
+        db.execSQL(DROP_USER_TABLE_COMPTE)
         onCreate(db)
     }
 
@@ -124,5 +151,20 @@ class DatabaseHelper(context: Context)
         private val COLUMN_MDP = "mdp"
         private val COLUMN_IMAGE ="image_data"
 
+        private val TABLE_CARTE = "CarteBancaire"
+
+        private val COLUMN_ID_CARTE = "idCarte"
+        private val COLUMN_NUMERO_CARTE = "numeroCarte"
+        private val COLUMN_DATE_EXP = "dateExpiration"
+        private val COLUMN_TYPE = "type"
+        private val COLUMN_KEY_USER_CARTE = "keyUserCarte"
+
+        private val TABLE_COMPTE = "Compte"
+
+        private val COLUMN_ID_COMPTE = "idCompte"
+        private val COLUMN_SOLDE = "solde"
+        private val COLUMN_DECOUVERT = "decouvert"
+        private val COLUMN_KEY_CARTE = "keyCarte"
+        private val COLUMN_KEY_USER_COMPTE = "keyUserCpt"
     }
 }

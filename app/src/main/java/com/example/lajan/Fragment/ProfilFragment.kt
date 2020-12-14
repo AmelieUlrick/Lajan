@@ -56,7 +56,7 @@ class ProfilFragment : Fragment() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val pickedImage = data?.data
-        if(requestCode == SELECT_PHOTO  && resultCode == RESULT_OK && data != null)
+        if(requestCode == SELECT_PHOTO  && resultCode == Activity.RESULT_OK && data != null)
             imgProfil.setImageURI(pickedImage)
         if (save_img != null) {
             save_img.isEnabled = true

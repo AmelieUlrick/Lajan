@@ -38,7 +38,7 @@ class ConnexionActivity : AppCompatActivity() {
 
 
         val idUser = db.getUser(cnx_login.text.toString(),cnx_mdp.text.toString())
-        if(db.connexion(cnx_login.text.toString(),cnx_mdp.text.toString())){
+        if(db.connexion(cnx_login.text.toString().trim(),cnx_mdp.text.toString().trim())){
             val nav = Intent(this, MenuActivity::class.java)
             nav.putExtra("idUser",idUser)
             startActivity(nav)

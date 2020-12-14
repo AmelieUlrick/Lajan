@@ -21,6 +21,7 @@ class FormulaireActivity : AppCompatActivity() {
         setContentView(R.layout.activity_formulaire)
 
         confirmInscription.setOnClickListener(){
+
             Adduser()
         }
     }

@@ -20,11 +20,14 @@ class DatabaseHelper(context: Context)
             + ")"
             )
 
-    override fun onCreate(db: SQLiteDatabase) {
+    private val DROP_USER_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
 
+    override fun onCreate(db: SQLiteDatabase) {
+        db.execSQL(CREATE_PRODUCTS_TABLE)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        db.execSQL(DROP_USER_TABLE)
         onCreate(db)
     }
 

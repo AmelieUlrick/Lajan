@@ -1,14 +1,18 @@
 package com.example.lajan.Activity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.lajan.Fragment.CarteFragment
 import com.example.lajan.Fragment.HomeFragment
 import com.example.lajan.Fragment.ProfilFragment
-import com.example.lajan.Fragment.CarteFragment
 import com.example.lajan.R
 import kotlinx.android.synthetic.main.activity_menu.*
+import java.lang.System.exit
+
 
 class MenuActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +47,22 @@ class MenuActivity : AppCompatActivity() {
             }
             true
         }
+
+        imgcb.setOnClickListener(object : View.OnClickListener {
+
+            override fun onClick(v: View?) {
+                makeCurrentFragment(homeFragment)
+               bottomNav.selectedItemId = R.id.navigation_home
+            }
+        })
+
+        imgLog.setOnClickListener(object : View.OnClickListener {
+
+            override fun onClick(v: View?) {
+               exit(0)
+            }
+        })
+
         }
 
 

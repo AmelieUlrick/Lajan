@@ -35,6 +35,7 @@ class ModifeFragment : Fragment() {
         val databaseHandler: DatabaseHelper = DatabaseHelper(activity!!)
         val newIntent2: Intent = requireActivity().intent
         val iduserP2 = newIntent2.getIntExtra("idUser", 0)
+
         val info = arrayOf("Nom","Prenom","AdresseMail","Password","login")
         val adp = ArrayAdapter(activity!!,android.R.layout.simple_spinner_dropdown_item,info)
         view.spinnerb.adapter = adp
@@ -48,10 +49,6 @@ class ModifeFragment : Fragment() {
                 val label: String = parent.getItemAtPosition(position).toString()
 
 
-                /*Toast.makeText(
-                    parent.getContext(), "You selected: " + label,
-                    Toast.LENGTH_LONG
-                ).show();*/
                 if(label == "Nom")
                 {
                     nom_layout.visibility = View.VISIBLE
@@ -96,7 +93,6 @@ class ModifeFragment : Fragment() {
 
             }
 
-
             override fun onNothingSelected(parent: AdapterView<*>?) {
                 TODO("Not yet implemented")
             }
@@ -108,6 +104,15 @@ class ModifeFragment : Fragment() {
             }
             if ( prenom_layout.visibility == View.VISIBLE) {
                 databaseHandler.updatePrenom(prenom_ed.text.toString(), iduserP2)
+            }
+            if( adresse_mail_layout.visibility == View.VISIBLE){
+                databaseHandler.updateAdresseM(adresse_mail_ed.text.toString(), iduserP2)
+            }
+            if( password_layout.visibility == View.VISIBLE){
+                databaseHandler.updatePassword(password_ed.text.toString(), iduserP2)
+            }
+            if( login_layout.visibility == View.VISIBLE){
+                databaseHandler.updateLogin(login_ed.text.toString(), iduserP2)
             }
         }
 

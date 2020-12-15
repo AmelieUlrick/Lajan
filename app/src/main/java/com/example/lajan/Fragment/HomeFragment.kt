@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import com.example.lajan.R
+import kotlinx.android.synthetic.main.activity_menu.*
 
 
 class HomeFragment : Fragment() {
@@ -15,6 +16,8 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        //setSupportActionBar(my_toolbar)
+        //activity!!.setSupportActionBar(my_toolbar)
 
     }
 

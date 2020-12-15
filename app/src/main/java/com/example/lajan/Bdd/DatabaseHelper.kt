@@ -258,6 +258,7 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
+    //Affiche la liste des cartes de la personne connectée
     fun readCarte(idUser:String):Cursor {
         val user = idUser.toString().toInt()
         val db = this.readableDatabase
@@ -267,6 +268,7 @@ class DatabaseHelper(context: Context)
 
     }
 
+    //Affiche la liste des comptes de la personne connectée
     fun lireCompte(idUser:String): Cursor {
         val user = idUser.toString().toInt()
         val db = this.readableDatabase
@@ -276,6 +278,7 @@ class DatabaseHelper(context: Context)
     }
 
 
+    //Met à jour le solde du compte après avoir soustrait la somme à débiter
     fun depense(solde:Double, cpt:Int){
         val db = this.writableDatabase
         val cv = ContentValues()
@@ -285,6 +288,7 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
+    //Créer les récapitulatifs des transactions d'un compte
     fun creerRecap(idCpt: Int, descriptif:String){
         val db = this.writableDatabase
         val cv = ContentValues()
@@ -294,6 +298,7 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
+    //Met à jour le solde du compte choisit après avoir fait la somme
     fun crediter(solde : Double, cpt : Int){
         val db = this.writableDatabase
         val cv = ContentValues()
@@ -303,6 +308,7 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
+    //Affiche l'historique des transactions à partir de la carte choisie
     fun affichRecapCompte(idCpt:Int):Cursor{
         val db = this.readableDatabase
         val query = " SELECT * FROM " + TABLE_RECAP + " WHERE "+ COLUMN_KEY_CPT_RECAP +"=$idCpt"
@@ -310,6 +316,7 @@ class DatabaseHelper(context: Context)
         return result
     }
 
+    //Affiche la liste des id des comptes excepté celui de la personne connevtée
     fun afficheIntCpt(idUser:Int, idCpt:Int) : ArrayList<Int>{
         val listeCompte : ArrayList<Int> = ArrayList()
         val db = this.readableDatabase
@@ -326,6 +333,7 @@ class DatabaseHelper(context: Context)
         return listeCompte
     }
 
+    //Recherche le solde d'un compte à partir de l'id de la personne connectée
     fun recupSoldeCompte(cpt:Int): Double {
         val db = this.readableDatabase
         val cursor = db.query(

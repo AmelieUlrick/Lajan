@@ -40,11 +40,20 @@ class FormulaireCarte : Fragment() {
                     keyUserCarte = dataIdUser)
             db.addCard(carte)
 
-            Toast.makeText(activity, "$carte", Toast.LENGTH_SHORT).show()
+            val compte = Compte(solde = 0.0, decouvert = 0.0, keyCarte = db.getIdCarte(), keyUserCpt = dataIdUser)
+            db.addCompte(compte)
+
+            Toast.makeText(activity, "Carte crée", Toast.LENGTH_SHORT).show()
         }
 
         view.form_Carte.setOnClickListener {
             ajouterLaCarte()
+            val pageCarte = CarteFragment()
+            val fragmentManager = activity!!.supportFragmentManager
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.container, pageCarte)
+                commit()
+            }
         }
 
         return view

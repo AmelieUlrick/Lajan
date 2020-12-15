@@ -119,26 +119,6 @@ class DatabaseHelper(context: Context)
 
     }
 
-    fun getImageSecond(user:Int): ByteArray? {
-        val db = this.writableDatabase
-        val qb = SQLiteQueryBuilder()
-        val sqlSelect = arrayOf(COLUMN_IMAGE)
-        /* val cursor = qb.query(
-             TABLE_NAME, null, "$COLUMN_ID = ?", arrayOf(user.toString()),
-             null, null, null
-         )*/
-        qb.tables = TABLE_NAME
-        val c = qb.query(db,sqlSelect,"id_utilisateur= ?", arrayOf(user.toString()),null,null,null)
-        var result :ByteArray?=null
-        //var result :ByteArray = ByteArray(1000000)
-        if(c.moveToFirst()){
-            do{
-                result = c.getBlob((c.getColumnIndex(COLUMN_IMAGE)))
-            }while(c.moveToNext())
-        }
-        return result
-    }
-
     //Trouver l'utilisateur à partir de son login et de son mot de passe
     //S'il existe, cela retourne son id
     fun getUser(login : String, mdp : String) : Int{
@@ -157,12 +137,16 @@ class DatabaseHelper(context: Context)
         }
     }
 
-    fun getImageSec(user:Int): ByteArray? {
+    fun getImage(user:Int): ByteArray? {
         val db = this.writableDatabase
         val qb = SQLiteQueryBuilder()
         val sqlSelect = arrayOf(COLUMN_IMAGE)
+        /* val cursor = qb.query(
+             TABLE_NAME, null, "$COLUMN_ID = ?", arrayOf(user.toString()),
+             null, null, null
+         )*/
         qb.tables = TABLE_NAME
-        val c = qb.query(db,sqlSelect,"id_utilisateur= ?", arrayOf(user.toString()),null,null,null)
+        val c = qb.query(db,sqlSelect,"id_utilisateur = ?", arrayOf(user.toString()),null,null,null)
         var result :ByteArray?=null
         if(c.moveToFirst()){
             do{
@@ -186,10 +170,10 @@ class DatabaseHelper(context: Context)
         val action = this.writableDatabase
 
         val cv = ContentValues()
-        cv.put(COLUMN_NUMERO_CARTE,carte.numeroCarte)
-        cv.put(COLUMN_DATE_EXP,carte.dateExpiration)
-        cv.put(COLUMN_TYPE,carte.typeCarte)
-        cv.put(COLUMN_KEY_USER_CARTE,carte.keyUserCarte)
+        cv.put(COLUMN_NUMERO_CARTE, carte.numeroCarte)
+        cv.put(COLUMN_DATE_EXP, carte.dateExpiration)
+        cv.put(COLUMN_TYPE, carte.typeCarte)
+        cv.put(COLUMN_KEY_USER_CARTE, carte.keyUserCarte)
 
         action.insert(TABLE_CARTE, null, cv)
         action.close()
@@ -208,7 +192,7 @@ class DatabaseHelper(context: Context)
         action.close()
     }
 
-    fun getIdCarte() : Int{
+    fun getIdCarte(): Int {
         val db = this.readableDatabase
         val cursor = db.query(
             TABLE_CARTE, null, null, null,
@@ -219,9 +203,10 @@ class DatabaseHelper(context: Context)
         }
         else {
             cursor.moveToLast()
-            val IdCarte: Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_CARTE ))
-            return IdCarte
+            val idCarte: Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_CARTE ))
+            return idCarte
         }
+
     }
 
     fun getMdp(email: String): String {

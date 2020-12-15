@@ -35,26 +35,16 @@ class FormulaireCarte : Fragment() {
         //Création d'une Carte Bancaire et d'un compte ou celui-ci sera associé à la carte
         fun ajouterLaCarte(){
             val carte = CarteBancaire(numeroCarte = form_numCarte.text.toString().toInt(),
-                dateExpiration = form_dateExpiration.text.toString().toInt(),
-                typeCarte = form_type.text.toString().trim(),
-                keyUserCarte = dataIdUser)
+                    dateExpiration = form_dateExpiration.text.toString().toInt(),
+                    typeCarte = form_type.text.toString().trim(),
+                    keyUserCarte = dataIdUser)
             db.addCard(carte)
-            val compte = Compte(solde = 0.0,
-                                decouvert = 0.0,
-                                keyCarte = db.getIdCarte(),
-                                keyUserCpt = dataIdUser)
-            db.addCompte(compte)
-            Toast.makeText(activity, "Carte crée", Toast.LENGTH_SHORT).show()
+
+            Toast.makeText(activity, "$carte", Toast.LENGTH_SHORT).show()
         }
 
         view.form_Carte.setOnClickListener {
-            //ajouterLaCarte()
-            /*val pageListCarte = CarteFragment()
-            val fragmentManager = activity!!.supportFragmentManager
-            fragmentManager.beginTransaction().apply {
-                replace(R.id.container, pageListCarte)
-                commit()
-            }*/
+            ajouterLaCarte()
         }
 
         return view

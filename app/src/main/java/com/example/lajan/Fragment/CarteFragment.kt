@@ -26,11 +26,11 @@ class CarteFragment : Fragment() {
 
         view.recycler_addCard.setOnClickListener{
 
-            intent.putExtra("idUser", 0)
+            intent.putExtra("idUser", idUser)
 
             val creerCarte = FormulaireCarte()
-            val fragmenManager = activity!!.supportFragmentManager
-            fragmenManager.beginTransaction().apply {
+            val fragmentManager = activity!!.supportFragmentManager
+            fragmentManager.beginTransaction().apply {
                 replace(R.id.container,creerCarte)
                 commit()
             }

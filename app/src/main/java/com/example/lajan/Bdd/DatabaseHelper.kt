@@ -170,10 +170,10 @@ class DatabaseHelper(context: Context)
         val action = this.writableDatabase
 
         val cv = ContentValues()
-        cv.put(COLUMN_NUMERO_CARTE,carte.numeroCarte)
-        cv.put(COLUMN_DATE_EXP,carte.dateExpiration)
-        cv.put(COLUMN_TYPE,carte.typeCarte)
-        cv.put(COLUMN_KEY_CARTE,carte.keyUserCarte)
+        cv.put(COLUMN_NUMERO_CARTE, carte.numeroCarte)
+        cv.put(COLUMN_DATE_EXP, carte.dateExpiration)
+        cv.put(COLUMN_TYPE, carte.typeCarte)
+        cv.put(COLUMN_KEY_CARTE, carte.keyUserCarte)
 
         action.insert(TABLE_CARTE, null, cv)
         action.close()
@@ -192,7 +192,7 @@ class DatabaseHelper(context: Context)
         action.close()
     }
 
-    fun getIdCarte() : Int{
+    fun getCarteId(): Int {
         val db = this.readableDatabase
         val cursor = db.query(
             TABLE_CARTE, null, null, null,
@@ -206,6 +206,7 @@ class DatabaseHelper(context: Context)
             val IdCarte: Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_CARTE ))
             return IdCarte
         }
+
     }
 
     fun getMdp(email: String): String {

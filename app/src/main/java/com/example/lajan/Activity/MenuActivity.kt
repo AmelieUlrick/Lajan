@@ -19,32 +19,27 @@ class MenuActivity : AppCompatActivity() {
         val profilFragment = ProfilFragment()
         val CarteFragment = CarteFragment()
 
-        //val Nom = intent.getStringExtra("nom")
-        //val idUser = intent.getIntExtra("id", 0)
 
-        makeCurrentFragment(homeFragment)
 
         //Récupère les données envoyées
         val intent : Intent = intent
-        intent.getIntExtra("idUser", 0)
+        val idUser = intent.getIntExtra("idUser", 0)
 
         bottomNav.setOnNavigationItemSelectedListener{
 
             //Envoie l'id de l'utilisateur dans chaque fragment du menu
-            //intent.putExtra("idUser", 0)
+            intent.putExtra("idUser", idUser)
             when (it.itemId){
                 R.id.navigation_home -> {
                     makeCurrentFragment(homeFragment)
-                    //intent.getIntExtra("idUser",0)
                 }
                 R.id.navigation_profil -> {
                     makeCurrentFragment(profilFragment)
-                    //intent.getIntExtra("idUser",0)
                 }
                 R.id.navigation_carte -> {
                     makeCurrentFragment(CarteFragment)
-                    //intent.getIntExtra("idUser",0)
-                    intent.getStringExtra("nom")
+                    intent.putExtra("idUser", idUser)
+
                 }
             }
             true

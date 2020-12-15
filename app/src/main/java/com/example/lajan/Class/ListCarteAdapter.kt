@@ -30,14 +30,15 @@ class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : 
         holder.type.text = listCB.typeCarte
 
 
-        /*holder.itemView.setOnClickListener(object : View.OnClickListener{
+        //Liste de carte cliquable
+        holder.itemView.setOnClickListener(object : View.OnClickListener{
             override fun onClick(v: View?) {
                 PopupMenu(holder.itemView.context, holder.itemView).apply {
                     inflate(R.menu.menu_fct_compte)
                     show()
                     setOnMenuItemClickListener {
-                        val solde = listCompte.solde
-                        val idCpt = listCompte.idCompte
+                        val solde = listCpt.solde
+                        val idCpt = listCpt.idCompte
 
                         val activity = v!!.context as AppCompatActivity
 
@@ -65,7 +66,7 @@ class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : 
                     }
                 }
             }
-        })*/
+        })
 
     }
 

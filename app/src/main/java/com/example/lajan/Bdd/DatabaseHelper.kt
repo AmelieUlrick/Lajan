@@ -2,6 +2,7 @@ package com.example.lajan.Bdd
 
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteQueryBuilder
@@ -245,6 +246,22 @@ class DatabaseHelper(context: Context)
         )
         db.close()
     }
+
+    fun readCompte(idUser:Int): Cursor {
+        val db = this.readableDatabase
+        val query = " SELECT * FROM " + TABLE_COMPTE + " WHERE "+ COLUMN_KEY_USER_COMPTE +"=$idUser"
+        val result = db.rawQuery(query,null)
+        return result
+    }
+
+    fun readCarte(idUser:Int):Cursor{
+        val db = this.readableDatabase
+        val query = "SELECT * FROM " + TABLE_CARTE + " WHERE "+ COLUMN_KEY_USER_CARTE + "=$idUser"
+        val result = db.rawQuery(query,null)
+        return result
+
+    }
+
     companion object {
         private val DATABASE_VERSION = 1
 

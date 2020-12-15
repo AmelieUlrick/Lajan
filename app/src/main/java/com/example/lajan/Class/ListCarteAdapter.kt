@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lajan.Fragment.CrediterFragment
 import com.example.lajan.Fragment.DepenseFragment
 import com.example.lajan.R
 
@@ -60,6 +61,9 @@ class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : 
                                 true
                             }
                             R.id.menu_fct_crediter ->{
+                                val pageCrediter = CrediterFragment()
+                                pageCrediter.setArguments(bundle)
+                                activity.supportFragmentManager.beginTransaction().replace(R.id.container, pageCrediter).commit()
                                 true
                             }
                             R.id.menu_fct_recap ->{

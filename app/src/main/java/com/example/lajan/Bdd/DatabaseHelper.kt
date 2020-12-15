@@ -297,6 +297,20 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
+    fun crediter(solde : Double, cpt : Int) : String{
+        val db = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(COLUMN_SOLDE,solde)
+        db.update(TABLE_COMPTE,cv, "$COLUMN_ID_COMPTE=?", arrayOf(cpt.toString()))
+
+        val recap = "Compte créditer de $solde euros"
+        creerRecap(cpt,recap)
+
+        db.close()
+
+        return recap
+    }
+
     companion object {
         private val DATABASE_VERSION = 1
 

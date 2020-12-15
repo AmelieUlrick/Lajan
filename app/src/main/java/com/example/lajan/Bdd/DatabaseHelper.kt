@@ -350,6 +350,38 @@ class DatabaseHelper(context: Context)
         }
     }
 
+    fun updateAdresseM(newAdresse: String, Iduser:Int) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_ADRESSE_MAIL,newAdresse)
+        db.update(
+                TABLE_NAME, values, "$COLUMN_ID = ?",
+                arrayOf(Iduser.toString())
+        )
+        db.close()
+    }
+    fun updatePassword(newPassword: String, Iduser:Int) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_MDP,newPassword)
+        db.update(
+                TABLE_NAME, values, "$COLUMN_ID = ?",
+                arrayOf(Iduser.toString())
+        )
+        db.close()
+    }
+    fun updateLogin(newLogin: String, Iduser:Int) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_LOGIN,newLogin)
+        db.update(
+                TABLE_NAME, values, "$COLUMN_ID = ?",
+                arrayOf(Iduser.toString())
+        )
+        db.close()
+    }
+
+
     companion object {
         private val DATABASE_VERSION = 1
 

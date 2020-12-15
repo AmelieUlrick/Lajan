@@ -310,6 +310,38 @@ class DatabaseHelper(context: Context)
         return result
     }
 
+    fun afficheIntCpt(idUser:Int, idCpt:Int) : ArrayList<Int>{
+        val listeCompte : ArrayList<Int> = ArrayList()
+        val db = this.readableDatabase
+
+        val query = " SELECT * FROM " + TABLE_COMPTE + " WHERE "+ COLUMN_KEY_USER_COMPTE +"=$idUser AND "+ COLUMN_ID_COMPTE +"!=$idCpt"
+        val result = db.rawQuery(query,null)
+        if(result.moveToFirst()){
+            do{
+                listeCompte.add(result.getInt(0))
+            }while(result.moveToNext())
+        }
+        result.close()
+        db.close()
+        return listeCompte
+    }
+
+    fun recupSoldeCompte(cpt:Int): Double {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            TABLE_COMPTE, null, "$COLUMN_ID_COMPTE = ?", arrayOf(cpt.toString()),
+            null, null, null
+        )
+        if (cursor.getCount() < 1) {
+            return 0.0
+        }
+        else {
+            cursor.moveToFirst()
+            val idSolde : Double = cursor.getDouble(cursor.getColumnIndex(COLUMN_SOLDE))
+            return idSolde
+        }
+    }
+
     companion object {
         private val DATABASE_VERSION = 1
 

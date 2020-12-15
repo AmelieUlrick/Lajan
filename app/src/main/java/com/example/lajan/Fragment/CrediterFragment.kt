@@ -10,10 +10,7 @@ import com.example.lajan.Bdd.DatabaseHelper
 import com.example.lajan.R
 import kotlinx.android.synthetic.main.fragment_crediter.view.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+
 
 /**
  * A simple [Fragment] subclass.
@@ -35,14 +32,18 @@ class CrediterFragment : Fragment() {
         val db = DatabaseHelper(activity!!)
 
         view.crediter_btn.setOnClickListener{
-            val resultat = additionner(view.crediter.text.toString().toDouble(), dataSolde)
-            val msgRecap = db.crediter(resultat, dataIdCpt)
-            db.creerRecap(dataIdCpt, msgRecap)
+            val sommeCrediter = view.crediter.text.toString().toDouble()
+            val resultat = additionner(sommeCrediter, dataSolde)
+            db.crediter(resultat, dataIdCpt)
+
+            val msg = "Compte créditer de $sommeCrediter euros"
+            db.creerRecap(dataIdCpt, msg)
             Toast.makeText(activity, "Compte crédité", Toast.LENGTH_SHORT).show()
         }
 
         return view
     }
+
     fun additionner(sommeCrediter: Double, solde : Double) : Double{
         return sommeCrediter + solde
     }

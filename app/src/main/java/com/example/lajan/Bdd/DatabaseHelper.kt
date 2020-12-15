@@ -276,16 +276,13 @@ class DatabaseHelper(context: Context)
     }
 
 
-    fun depense(solde:Double, cpt:Int):String{
+    fun depense(solde:Double, cpt:Int){
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(COLUMN_SOLDE,solde)
         db.update(TABLE_COMPTE,cv, "$COLUMN_ID_COMPTE = ?", arrayOf(cpt.toString()))
 
-        val msgRecap = "Depense/Retrait de $solde euros"
-
         db.close()
-        return msgRecap
     }
 
     fun creerRecap(idCpt: Int, descriptif:String){
@@ -297,18 +294,20 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
-    fun crediter(solde : Double, cpt : Int) : String{
+    fun crediter(solde : Double, cpt : Int){
         val db = this.writableDatabase
         val cv = ContentValues()
         cv.put(COLUMN_SOLDE,solde)
         db.update(TABLE_COMPTE,cv, "$COLUMN_ID_COMPTE=?", arrayOf(cpt.toString()))
 
-        val recap = "Compte créditer de $solde euros"
-        creerRecap(cpt,recap)
-
         db.close()
+    }
 
-        return recap
+    fun affichRecapCompte(idCpt:Int):Cursor{
+        val db = this.readableDatabase
+        val query = " SELECT * FROM " + TABLE_RECAP + " WHERE "+ COLUMN_KEY_CPT_RECAP +"=$idCpt"
+        val result = db.rawQuery(query,null)
+        return result
     }
 
     companion object {

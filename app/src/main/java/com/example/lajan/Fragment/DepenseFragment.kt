@@ -29,10 +29,14 @@ class DepenseFragment : Fragment() {
 
         val db = DatabaseHelper(activity!!)
 
+
         view.depense_btn.setOnClickListener{
-            val resultat = deduire(view.depense.text.toString().toDouble(),dataSolde)
-            val transac = db.depense(resultat,dataIdCpt)
-            db.creerRecap(dataIdCpt,transac)
+
+            val sommeDebiter = view.depense.text.toString().toDouble()
+            val resultat = deduire(sommeDebiter,dataSolde)
+            db.depense(resultat,dataIdCpt)
+            val msg = "Dépense de $sommeDebiter euros"
+            db.creerRecap(dataIdCpt,msg)
 
             Toast.makeText(activity, "Dépense enregistré", Toast.LENGTH_SHORT).show()
         }

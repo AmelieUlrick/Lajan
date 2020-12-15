@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.lajan.Fragment.CrediterFragment
 import com.example.lajan.Fragment.DepenseFragment
+import com.example.lajan.Fragment.HistoriqueTransaction
 import com.example.lajan.R
 
 class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : RecyclerView.Adapter<ListCarteAdapter.ListViewHolder>() {
@@ -67,6 +68,9 @@ class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : 
                                 true
                             }
                             R.id.menu_fct_recap ->{
+                                val historique = HistoriqueTransaction()
+                                historique.setArguments(bundle)
+                                activity.supportFragmentManager.beginTransaction().replace(R.id.container, historique).commit()
                                 true
                             }
                             else -> false

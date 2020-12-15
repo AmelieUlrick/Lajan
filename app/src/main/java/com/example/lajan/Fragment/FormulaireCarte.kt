@@ -48,10 +48,10 @@ class FormulaireCarte : Fragment() {
 
         view.form_Carte.setOnClickListener {
             ajouterLaCarte()
-            val pageCarte = CarteFragment()
+            val pageAfficheCarte = ListeCarte()
             val fragmentManager = activity!!.supportFragmentManager
             fragmentManager.beginTransaction().apply {
-                replace(R.id.container, pageCarte)
+                replace(R.id.container, pageAfficheCarte)
                 commit()
             }
         }

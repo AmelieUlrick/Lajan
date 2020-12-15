@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:title="Faire un virement"
+        android:id="@+id/menu_fct_virement"/>
+    <item
+        android:title="Entrer une dépense"
+        android:id="@+id/menu_fct_depense"/>
+    <item
+        android:title="Créditer le compte"
+        android:id="@+id/menu_fct_crediter"/>
+    <item
+        android:title="Historique des transactions"
+        android:id="@+id/menu_fct_recap"/>
+</menu>

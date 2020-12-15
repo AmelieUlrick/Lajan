@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.lajan.R
 import kotlinx.android.synthetic.main.fragment_carte.view.*
 
@@ -27,11 +28,20 @@ class CarteFragment : Fragment() {
         view.recycler_addCard.setOnClickListener{
 
             intent.putExtra("idUser", idUser)
-
             val creerCarte = FormulaireCarte()
             val fragmentManager = activity!!.supportFragmentManager
             fragmentManager.beginTransaction().apply {
                 replace(R.id.container,creerCarte)
+                commit()
+            }
+        }
+
+        view.carte_affiche.setOnClickListener{
+            intent.putExtra("idUser", idUser)
+            val afficheCarte = ListeCarte()
+            val fragmentManager = activity!!.supportFragmentManager
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.container, afficheCarte)
                 commit()
             }
         }

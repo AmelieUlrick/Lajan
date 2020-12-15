@@ -1,7 +1,6 @@
 package com.example.lajan.Fragment
 
 import android.app.Activity
-import android.app.Activity.RESULT_OK
 import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
@@ -10,6 +9,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.Toast
 import com.example.lajan.Bdd.DatabaseHelper
 import com.example.lajan.R
 import com.example.lajan.Utils.Utils
@@ -20,20 +21,21 @@ import java.lang.System.exit
 
 class ProfilFragment : Fragment() {
 
-    private val SELECT_PHOTO =  1000
-
+    private val SELECT_PHOTO =  3000
+    //private val pickedImage = 100
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_profil, container, false)
+
         val databaseHandler: DatabaseHelper = DatabaseHelper(activity!!)
         val newIntent: Intent = requireActivity().intent
         val IduserP = newIntent.getIntExtra("idUser", 0)
         val NomP = newIntent.getStringExtra("nom")
 
-        val bitmap = Utils.getImage(databaseHandler.getImage(IduserP)!!)
+        val bitmap = Utils.getImage(databaseHandler.getImageSec(IduserP)!!)
         view.imgProfil.setImageBitmap(bitmap)
 
         view.select_img.setOnClickListener()
@@ -62,5 +64,9 @@ class ProfilFragment : Fragment() {
             save_img.isEnabled = true
         }
     }
+    override fun onDestroy() {
+        super.onDestroy()
+    }
+
 
 }

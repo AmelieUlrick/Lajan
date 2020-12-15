@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Lajan</string>
+    <string name="app_name2">Mot de Passe oublié</string>
     <string name="error_message_Nom">Enter Valid Name</string>
     <string name="error_message_Prenom">Enter Valid LastName</string>
     <string name="error_message_Password">Entrer Valid Password</string>

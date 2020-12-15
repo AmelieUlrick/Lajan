@@ -1,5 +1,8 @@
 package com.example.lajan
 
+
+import android.annotation.SuppressLint
+import android.app.ActionBar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,9 +14,12 @@ import com.example.lajan.Bdd.DatabaseHelper
 import kotlinx.android.synthetic.main.activity_connexion.*
 
 class ConnexionActivity : AppCompatActivity() {
+
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connexion)
+
 
         //Clique sur le bouton connexion
         cnx_btn.setOnClickListener {

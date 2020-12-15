@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Lajan">
-        <activity android:name=".Activity.RecupererMdp"></activity>
+        <activity android:name=".Activity.RecupererMdp">
+        </activity>
         <activity android:name=".Activity.MenuActivity" />
         <activity android:name=".Activity.FormulaireActivity" />
         <activity android:name=".ConnexionActivity">

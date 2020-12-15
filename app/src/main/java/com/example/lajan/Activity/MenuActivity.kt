@@ -19,11 +19,15 @@ class MenuActivity : AppCompatActivity() {
         val profilFragment = ProfilFragment()
         val CarteFragment = CarteFragment()
 
+        //val Nom = intent.getStringExtra("nom")
 
+
+        makeCurrentFragment(homeFragment)
 
         //Récupère les données envoyées
         val intent : Intent = intent
         val idUser = intent.getIntExtra("idUser", 0)
+        //intent.getIntExtra("idUser", 0)
 
         bottomNav.setOnNavigationItemSelectedListener{
 
@@ -32,14 +36,16 @@ class MenuActivity : AppCompatActivity() {
             when (it.itemId){
                 R.id.navigation_home -> {
                     makeCurrentFragment(homeFragment)
+                    intent.putExtra("idUser", idUser)
                 }
                 R.id.navigation_profil -> {
                     makeCurrentFragment(profilFragment)
+                    intent.putExtra("idUser", idUser)
                 }
                 R.id.navigation_carte -> {
                     makeCurrentFragment(CarteFragment)
                     intent.putExtra("idUser", idUser)
-
+                    //intent.getStringExtra("nom")
                 }
             }
             true

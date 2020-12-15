@@ -40,7 +40,7 @@ class FormulaireActivity : AppCompatActivity() {
                 mdp = password_ed.text.toString().trim())
 
         if (NomVef() && PrenomVef() && PasswordVef() && (AdressVef() && Patterns.EMAIL_ADDRESS.matcher(adresse_mail_ed.text.toString().trim()).matches())) {
-            val image = BitmapFactory.decodeResource(resources, R.drawable.img_profil)
+            val image = BitmapFactory.decodeResource(resources, R.drawable.image_profil)
             val image_profil = Utils.getBytes(image)
             databaseHandler.addUser(user, image_profil)
             val intent = Intent(this, ConnexionActivity::class.java)

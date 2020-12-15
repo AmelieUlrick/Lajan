@@ -137,7 +137,7 @@ class DatabaseHelper(context: Context)
         }
     }
 
-    fun getImage(user:Int): ByteArray? {
+    fun getImage2(user:Int): ByteArray? {
         val db = this.writableDatabase
         val qb = SQLiteQueryBuilder()
         val sqlSelect = arrayOf(COLUMN_IMAGE)
@@ -225,6 +225,26 @@ class DatabaseHelper(context: Context)
         }
     }
 
+    fun updateNom(newNom: String, Iduser:Int) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_NOM,newNom)
+        db.update(
+            TABLE_NAME, values, "$COLUMN_ID = ?",
+            arrayOf(Iduser.toString())
+        )
+        db.close()
+    }
+    fun updatePrenom(newPrenom: String, Iduser:Int) {
+        val db = this.writableDatabase
+        val values = ContentValues()
+        values.put(COLUMN_PRENOM,newPrenom)
+        db.update(
+            TABLE_NAME, values, "$COLUMN_ID = ?",
+            arrayOf(Iduser.toString())
+        )
+        db.close()
+    }
     companion object {
         private val DATABASE_VERSION = 1
 

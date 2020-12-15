@@ -11,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import com.example.lajan.Activity.MenuActivity
 import com.example.lajan.Bdd.DatabaseHelper
 import com.example.lajan.R
 import com.example.lajan.Utils.Utils
@@ -22,7 +23,6 @@ import java.lang.System.exit
 class ProfilFragment : Fragment() {
 
     private val SELECT_PHOTO =  3000
-    //private val pickedImage = 100
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,10 +32,11 @@ class ProfilFragment : Fragment() {
 
         val databaseHandler: DatabaseHelper = DatabaseHelper(activity!!)
         val newIntent: Intent = requireActivity().intent
-        val IduserP = newIntent.getIntExtra("idUser", 0)
+        val iduserP = newIntent.getIntExtra("idUser", 0)
         val NomP = newIntent.getStringExtra("nom")
+        newIntent.putExtra("idUser",iduserP)
 
-        val bitmap = Utils.getImage(databaseHandler.getImageSec(IduserP)!!)
+        val bitmap = Utils.getImage(databaseHandler.getImage2(iduserP)!!)
         view.imgProfil.setImageBitmap(bitmap)
 
         view.select_img.setOnClickListener()
@@ -47,11 +48,18 @@ class ProfilFragment : Fragment() {
         {
             val bitmap = (imgProfil.drawable as BitmapDrawable).bitmap
             val imgByte = Utils.getBytes(bitmap)
-            DatabaseHelper(activity!!).updateImage(imgByte,IduserP)
+            DatabaseHelper(activity!!).updateImage(imgByte,iduserP)
         }
         view.deconnexion.setOnClickListener()
         {
             exit(0)
+        }
+        view.modifie.setOnClickListener()
+        {
+            val fragment = ModifeFragment()
+            val fragmentManager = activity!!.supportFragmentManager
+            fragmentManager.beginTransaction().apply { replace(R.id.container,fragment)
+                commit() }
         }
         return view
     }

@@ -44,21 +44,32 @@ class DatabaseHelper(context: Context)
             + " FOREIGN KEY ("+ COLUMN_KEY_USER_COMPTE+") REFERENCES "+ TABLE_NAME +" ("+ COLUMN_ID +")"
             + ")"
             )
+    //Création table Récapitulatif
+    private val CREATE_PRODUCTS_TABLE_RECAP = ("CREATE TABLE " +
+            TABLE_RECAP + "(" +
+            COLUMN_ID_RECAP + " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_DESCRIPTIF + " TEXT,"
+            + COLUMN_KEY_CPT_RECAP + " INTEGER, "
+            + " FOREIGN KEY ("+ COLUMN_KEY_CPT_RECAP+") REFERENCES "+ TABLE_COMPTE +" ("+ COLUMN_ID_COMPTE +")"
+            + ")"
+            )
 
     private val DROP_USER_TABLE = "DROP TABLE IF EXISTS $TABLE_NAME"
     private val DROP_USER_TABLE_CARTE = "DROP TABLE IF EXISTS $TABLE_CARTE"
     private val DROP_USER_TABLE_COMPTE = "DROP TABLE IF EXISTS $TABLE_COMPTE"
+    private val DROP_USER_TABLE_RECAP = "DROP TABLE IF EXISTS $TABLE_RECAP"
 
     override fun onCreate(db: SQLiteDatabase) {
         db.execSQL(CREATE_PRODUCTS_TABLE)
         db.execSQL(CREATE_PRODUCTS_TABLE_CARTE)
         db.execSQL(CREATE_PRODUCTS_TABLE_COMPTE)
+        db.execSQL(CREATE_PRODUCTS_TABLE_RECAP)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
         db.execSQL(DROP_USER_TABLE)
         db.execSQL(DROP_USER_TABLE_CARTE)
         db.execSQL(DROP_USER_TABLE_COMPTE)
+        db.execSQL(DROP_USER_TABLE_RECAP)
         onCreate(db)
     }
 
@@ -247,19 +258,43 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
-    fun readCompte(idUser:Int): Cursor {
+    fun readCarte(idUser:String):Cursor {
+        val user = idUser.toString().toInt()
         val db = this.readableDatabase
-        val query = " SELECT * FROM " + TABLE_COMPTE + " WHERE "+ COLUMN_KEY_USER_COMPTE +"=$idUser"
+        val query = "SELECT * FROM " + TABLE_CARTE + " WHERE "+ COLUMN_KEY_USER_CARTE + "=$user"
+        val result = db.rawQuery(query,null)
+        return result
+
+    }
+
+    fun lireCompte(idUser:String): Cursor {
+        val user = idUser.toString().toInt()
+        val db = this.readableDatabase
+        val query = " SELECT * FROM " + TABLE_COMPTE + " WHERE "+ COLUMN_KEY_USER_COMPTE +"=$user"
         val result = db.rawQuery(query,null)
         return result
     }
 
-    fun readCarte(idUser:Int):Cursor{
-        val db = this.readableDatabase
-        val query = "SELECT * FROM " + TABLE_CARTE + " WHERE "+ COLUMN_KEY_USER_CARTE + "=$idUser"
-        val result = db.rawQuery(query,null)
-        return result
 
+    fun depense(solde:Double, cpt:Int):String{
+        val db = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(COLUMN_SOLDE,solde)
+        db.update(TABLE_COMPTE,cv, "$COLUMN_ID_COMPTE = ?", arrayOf(cpt.toString()))
+
+        val msgRecap = "Depense/Retrait de $solde euros"
+
+        db.close()
+        return msgRecap
+    }
+
+    fun creerRecap(idCpt: Int, descriptif:String){
+        val db = this.writableDatabase
+        val cv = ContentValues()
+        cv.put(COLUMN_DESCRIPTIF,descriptif)
+        cv.put(COLUMN_KEY_CPT_RECAP,idCpt)
+        db.insert(TABLE_RECAP,null,cv)
+        db.close()
     }
 
     companion object {
@@ -292,5 +327,11 @@ class DatabaseHelper(context: Context)
         private val COLUMN_DECOUVERT = "decouvert"
         private val COLUMN_KEY_CARTE = "keyCarte"
         private val COLUMN_KEY_USER_COMPTE = "keyUserCpt"
+
+        private val TABLE_RECAP = "Recapitulatif"
+
+        private val COLUMN_ID_RECAP = "idRecap"
+        private val COLUMN_DESCRIPTIF = "descriptif"
+        private val COLUMN_KEY_CPT_RECAP = "keyIdCpt"
     }
 }

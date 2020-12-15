@@ -7,7 +7,9 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lajan.Fragment.DepenseFragment
 import com.example.lajan.R
 
 class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : RecyclerView.Adapter<ListCarteAdapter.ListViewHolder>() {
@@ -48,9 +50,13 @@ class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : 
 
                         when(it.itemId){
                             R.id.menu_fct_virement ->{
+
                                 true
                             }
                             R.id.menu_fct_depense ->{
+                                val pageDepense = DepenseFragment()
+                                pageDepense.setArguments(bundle)
+                                activity.supportFragmentManager.beginTransaction().replace(R.id.container, pageDepense).commit()
                                 true
                             }
                             R.id.menu_fct_crediter ->{
@@ -67,7 +73,6 @@ class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : 
                 }
             }
         })
-
     }
 
     override fun getItemCount() = list.size

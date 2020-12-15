@@ -37,7 +37,7 @@ class ListeCarte : Fragment() {
 
         fun afficheCompte(){
             list.clear()
-            val res = db.readCompte(dataIdUser)
+            val res = db.lireCompte(dataIdUser.toString())
             if(res.count == 0){
                 Toast.makeText(activity, "no record :", Toast.LENGTH_LONG).show()
             }
@@ -52,7 +52,7 @@ class ListeCarte : Fragment() {
 
         fun afficheCarte(){
             list2.clear()
-            val res = db.readCarte(dataIdUser)
+            val res = db.readCarte(dataIdUser.toString())
             if(res.count == 0){
                 Toast.makeText(activity, "no record :", Toast.LENGTH_LONG).show()
             }

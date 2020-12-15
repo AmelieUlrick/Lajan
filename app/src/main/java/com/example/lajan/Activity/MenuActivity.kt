@@ -38,7 +38,6 @@ class MenuActivity : AppCompatActivity() {
                 }
                 R.id.navigation_carte -> {
                     makeCurrentFragment(CarteFragment)
-                    intent.putExtra("idUser", idUser)
 
                 }
             }

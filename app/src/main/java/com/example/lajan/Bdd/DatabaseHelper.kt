@@ -173,7 +173,7 @@ class DatabaseHelper(context: Context)
         cv.put(COLUMN_NUMERO_CARTE, carte.numeroCarte)
         cv.put(COLUMN_DATE_EXP, carte.dateExpiration)
         cv.put(COLUMN_TYPE, carte.typeCarte)
-        cv.put(COLUMN_KEY_CARTE, carte.keyUserCarte)
+        cv.put(COLUMN_KEY_USER_CARTE, carte.keyUserCarte)
 
         action.insert(TABLE_CARTE, null, cv)
         action.close()
@@ -192,7 +192,7 @@ class DatabaseHelper(context: Context)
         action.close()
     }
 
-    fun getCarteId(): Int {
+    fun getIdCarte(): Int {
         val db = this.readableDatabase
         val cursor = db.query(
             TABLE_CARTE, null, null, null,
@@ -203,8 +203,8 @@ class DatabaseHelper(context: Context)
         }
         else {
             cursor.moveToLast()
-            val IdCarte: Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_CARTE ))
-            return IdCarte
+            val idCarte: Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_CARTE ))
+            return idCarte
         }
 
     }

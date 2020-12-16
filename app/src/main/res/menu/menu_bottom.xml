@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item
-        android:id="@+id/navigation_home"
-        android:icon="@drawable/ic_home"
-        android:title="home" />
 
     <item
         android:id="@+id/navigation_carte"
         android:icon="@drawable/ic_credit_card"
-        android:title="carte" />
+        android:title="Carte" />
 
     <item
         android:id="@+id/navigation_profil"
         android:icon="@drawable/ic_profil"
-        android:title="profil" />
+        android:title="Profil" />
+
+    <item
+        android:id="@+id/navigation_deconnexion"
+        android:icon="@drawable/ic_deconnexion"
+        android:title="Déconnexion" />
 
 </menu>

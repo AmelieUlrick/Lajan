@@ -1,4 +1,4 @@
-package com.example.lajan.Class
+package com.example.lajan.Adapter
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,8 +7,9 @@ import android.view.ViewGroup
 import android.widget.PopupMenu
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
+import com.example.lajan.Class.CarteBancaire
+import com.example.lajan.Class.Compte
 import com.example.lajan.Fragment.CrediterFragment
 import com.example.lajan.Fragment.DepenseFragment
 import com.example.lajan.Fragment.HistoriqueTransaction

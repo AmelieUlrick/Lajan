@@ -1,4 +1,4 @@
-package com.example.lajan.Class
+package com.example.lajan.Adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.TextView
+import com.example.lajan.Class.Recapitulatif
 import com.example.lajan.R
 
 class CustomHistorique(context : Context, var ressources : Int, var list:List<Recapitulatif>): ArrayAdapter<Recapitulatif>(context,ressources,list) {

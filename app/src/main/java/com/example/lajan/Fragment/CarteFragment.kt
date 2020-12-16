@@ -45,6 +45,7 @@ class CarteFragment : Fragment() {
                 commit()
             }
         }
+
         return view
     }
 

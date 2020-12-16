@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ListView
 import android.widget.Toast
 import com.example.lajan.Bdd.DatabaseHelper
-import com.example.lajan.Class.CustomHistorique
+import com.example.lajan.Adapter.CustomHistorique
 import com.example.lajan.Class.Recapitulatif
 import com.example.lajan.R
 

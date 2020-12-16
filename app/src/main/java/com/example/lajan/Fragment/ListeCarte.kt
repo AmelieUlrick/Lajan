@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.lajan.Bdd.DatabaseHelper
 import com.example.lajan.Class.CarteBancaire
 import com.example.lajan.Class.Compte
-import com.example.lajan.Class.ListCarteAdapter
+import com.example.lajan.Adapter.ListCarteAdapter
 import com.example.lajan.R
 import kotlinx.android.synthetic.main.fragment_liste_carte.view.*
 

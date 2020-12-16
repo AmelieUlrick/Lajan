@@ -64,12 +64,19 @@ class VirementFragment : Fragment() {
                 val resDebit = debiter(montant.text.toString().toDouble(),dataSolde)
                 db.depense(resDebit,dataIdCpt)
 
+                val montantSolde = montant.text.toString().toDouble()
+                val msgDebit = "Virement de $montantSolde euros"
+                db.creerRecap(dataIdCpt, msgDebit)
+
                 //Chercher le solde du compte chosit dans le spinner
                 //Créditer le solde du montant entrer et update le compte
                 val trans = db.afficheA(dataIdUser ,afficheSpinner.text.toString())
                 val soldeACrediter = db.recupSoldeCompte(trans)
                 val resCredit = crediterCompte(montant.text.toString().toDouble(),soldeACrediter)
                 db.crediter(resCredit,trans)
+
+                val msgCrediter = "Recu somme de $montantSolde euros"
+                db.creerRecap(trans,msgCrediter)
 
                 val listCarte = ListeCarte()
                 val fragmentManager = activity!!.supportFragmentManager

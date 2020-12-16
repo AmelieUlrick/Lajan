@@ -23,6 +23,7 @@
                 android:text="Que voulez-vous faire ?"
                 android:layout_marginBottom="20dp"/>
             <Button
+                android:layout_marginTop="60dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -35,7 +36,8 @@
                 android:text="Ajouter une carte"
                 android:id="@+id/recycler_addCard"
                 android:layout_gravity="center"
-                android:background="@drawable/custom_button"/>
+                android:background="@android:color/transparent"/>
+
         </LinearLayout>
 
     </LinearLayout>

@@ -46,41 +46,77 @@ class FormulaireCarte : Fragment() {
     }
 
     //Création d'une Carte Bancaire et d'un compte ou celui-ci sera associé à la carte
-    fun ajouterLaCarte(){
+    //Création d'une Carte Bancaire et d'un compte ou celui-ci sera associé à la carte
+    fun ajouterLaCarte() {
         //Récupère les données envoyées
         val intent = requireActivity().intent
         val dataIdUser = intent.getIntExtra("idUser", 0)
 
+        val num: String = form_numCarte.getText().toString().trim()
+        //val num2 = form_numCarte.getText().toString().toLong()
+        val date: String = form_dateExpiration.getText().toString().trim()
+        val type: String = form_type.getText().toString().trim()
+        val name: String = form_name.getText().toString().trim()
 
-        val db = DatabaseHelper(activity!!)
-
-        val carte = CarteBancaire(numeroCarte = form_numCarte.text.toString().toLong(),
-                dateExpiration = form_dateExpiration.text.toString().toInt(),
-                typeCarte = form_type.text.toString().trim(),
-                keyUserCarte = dataIdUser)
-        val compte = Compte(solde = 0.0, decouvert = 0.0, keyCarte = db.getIdCarte(), keyUserCpt = dataIdUser, name_cpt = form_name.text.toString().trim())
-
-        if(!numVerif() || form_numCarte.text.toString() =="")
-        {
+        if(num.isEmpty() || num.equals("") || num == null) {
             form_numCarte_layout.error = getString(R.string.error_message_carte)
+            form_name_layout.isErrorEnabled = true
+            form_type_layout.isErrorEnabled = true
+            form_dateExpiration_layout.isErrorEnabled = true
+
+        }
+        else
+        {
+            form_numCarte_layout.isErrorEnabled = false
         }
 
-        if(!dateVerif() || form_dateExpiration.text.toString() =="")
-        {
+        if (date.isEmpty() || date.equals("") || date == null ) {
             form_dateExpiration_layout.error = getString(R.string.error_message_carte)
+            form_name_layout.isErrorEnabled = true
+            form_type_layout.isErrorEnabled = true
+            form_numCarte_layout.isErrorEnabled = true
         }
-        if(!typeVerif() || form_type.text.toString() =="")
+        else
         {
-            form_type_layout.error = getString(R.string.error_message_carte)
-        }
-        if(!nameVerif() || form_dateExpiration.text.toString() =="")
-        {
-            form_name_layout.error = getString(R.string.error_message_carte)
-        }
-        else{
+            form_dateExpiration_layout.isErrorEnabled = false
 
+        }
+
+
+        if (type.isEmpty() || type.equals("") || type == null) {
+            form_type_layout.error = getString(R.string.error_message_carte)
+            form_name_layout.isErrorEnabled = true
+            form_numCarte_layout.isErrorEnabled = true
+            form_dateExpiration_layout.isErrorEnabled = true
+        }
+        else
+        {
+            form_type_layout.isErrorEnabled =false
+        }
+
+
+        if (name.isEmpty() || name.equals("") || name == null) {
+            form_name_layout.error = getString(R.string.error_message_carte)
+            form_numCarte_layout.isErrorEnabled = true
+            form_type_layout.isErrorEnabled = true
+            form_dateExpiration_layout.isErrorEnabled = true
+
+        }
+        else
+        {
+            form_name_layout.isErrorEnabled =false
+        }
+        if( form_name_layout.isErrorEnabled == false && form_type_layout.isErrorEnabled == false && form_dateExpiration_layout.isErrorEnabled == false && form_numCarte_layout.isErrorEnabled == false){
+            val db = DatabaseHelper(activity!!)
+
+            val carte = CarteBancaire(numeroCarte = form_numCarte.text.toString().toLong(),
+                    dateExpiration = form_dateExpiration.text.toString().toInt(),
+                    typeCarte = form_type.text.toString().trim(),
+                    keyUserCarte = dataIdUser)
+            val compte = Compte(solde = 0.0, decouvert = 0.0, keyCarte = db.getIdCarte(), keyUserCpt = dataIdUser, name_cpt = form_name.text.toString().trim())
             db.addCard(carte)
             db.addCompte(compte)
+
             val pageAfficheCarte = ListeCarte()
             val fragmentManager = activity!!.supportFragmentManager
             fragmentManager.beginTransaction().apply {
@@ -90,44 +126,6 @@ class FormulaireCarte : Fragment() {
         }
 
 
-    }
-
-    fun numVerif (): Boolean {
-        if (form_numCarte.text.toString().isEmpty() ) {
-            form_numCarte_layout.error = getString(R.string.error_message_carte)
-            return false
-        } else {
-            form_numCarte_layout.isErrorEnabled = false
-        }
-        return true
-    }
-    fun dateVerif (): Boolean {
-        if (form_dateExpiration.text.toString() == "") {
-            form_dateExpiration_layout.error = getString(R.string.error_message_carte)
-            return false
-        } else {
-            form_dateExpiration_layout.isErrorEnabled = false
-        }
-        return true
-    }
-
-    fun typeVerif (): Boolean {
-        if (form_type.text.toString().trim().isEmpty()) {
-            form_type_layout.error = getString(R.string.error_message_carte)
-            return false
-        } else {
-            form_type_layout.isErrorEnabled = false
-        }
-        return true
-    }
-    fun nameVerif (): Boolean {
-        if (form_name.text.toString().trim()== "") {
-            form_name_layout.error = getString(R.string.error_message_carte)
-            return false
-        } else {
-            form_name_layout.isErrorEnabled = false
-        }
-        return true
     }
 
 

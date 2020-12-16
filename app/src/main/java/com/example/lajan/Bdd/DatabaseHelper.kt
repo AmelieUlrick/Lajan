@@ -468,6 +468,7 @@ class DatabaseHelper(context: Context)
 
     }
 
+
     companion object {
         private val DATABASE_VERSION = 1
 

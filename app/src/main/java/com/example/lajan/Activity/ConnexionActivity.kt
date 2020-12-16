@@ -1,16 +1,12 @@
-package com.example.lajan
+package com.example.lajan.Activity
 
 
 import android.annotation.SuppressLint
-import android.app.ActionBar
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
-import com.example.lajan.Activity.FormulaireActivity
-import com.example.lajan.Activity.MenuActivity
-import com.example.lajan.Activity.RecupererMdp
 import com.example.lajan.Bdd.DatabaseHelper
+import com.example.lajan.R
 import kotlinx.android.synthetic.main.activity_connexion.*
 
 class ConnexionActivity : AppCompatActivity() {

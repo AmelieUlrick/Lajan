@@ -16,7 +16,7 @@
         </activity>
         <activity android:name=".Activity.MenuActivity" />
         <activity android:name=".Activity.FormulaireActivity" />
-        <activity android:name=".ConnexionActivity">
+        <activity android:name=".Activity.ConnexionActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

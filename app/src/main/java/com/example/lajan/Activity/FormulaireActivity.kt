@@ -11,7 +11,6 @@ import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import com.example.lajan.Bdd.DatabaseHelper
 import com.example.lajan.Class.Utilisateur
-import com.example.lajan.ConnexionActivity
 import com.example.lajan.R
 import com.example.lajan.Utils.Utils
 import kotlinx.android.synthetic.main.activity_formulaire.*

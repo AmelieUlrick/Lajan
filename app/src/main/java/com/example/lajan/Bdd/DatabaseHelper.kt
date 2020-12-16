@@ -422,7 +422,7 @@ class DatabaseHelper(context: Context)
 
         private val COLUMN_ID = "id_utilisateur"
         private val COLUMN_PRENOM = "Prenom"
-        private val COLUMN_NOM = " Nom"
+        private val COLUMN_NOM = "Nom"
         private val COLUMN_ADRESSE_MAIL = "adresse_mail"
         private val COLUMN_LOGIN = "login"
         private val COLUMN_MDP = "mdp"

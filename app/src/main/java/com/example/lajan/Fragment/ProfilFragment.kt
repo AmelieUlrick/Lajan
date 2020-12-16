@@ -61,8 +61,12 @@ class ProfilFragment : Fragment() {
         }
 
         val tt: List<Utilisateur> = databaseHandler.getAll(iduserP)
-        for(e in tt){
-            Toast.makeText(activity, "${e.Prenom}", Toast.LENGTH_SHORT).show()
+        for(element in tt){
+            view.profil_nom.text = element.Nom
+            view.profil_prenom.text = element.Prenom
+            view.profil_adresseMail.text = element.adresse_mail
+            view.profil_login.text = element.login
+            view.profil_mdp.text = element.mdp
         }
 
         return view

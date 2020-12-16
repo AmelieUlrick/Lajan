@@ -13,8 +13,8 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal">
             <ImageView
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"/>
             <Button
                 android:id="@+id/save_img"
-                android:text="Enregistre"
+                android:text="Enregistrer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -43,21 +43,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:layout_marginLeft="50dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:text="Nom : "/>
                 <TextView
+                    android:gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:id="@+id/profil_nom"/>
             </LinearLayout>
             <LinearLayout
@@ -65,14 +65,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:layout_marginLeft="50dp"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:text="Prénom : "/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:gravity="left"
                     android:id="@+id/profil_prenom"/>
             </LinearLayout>
             <LinearLayout
@@ -82,12 +82,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="50dp"
                     android:text="Adresse mail : "/>
                 <TextView
+                    android:gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:id="@+id/profil_adresseMail"/>
             </LinearLayout>
             <LinearLayout
@@ -97,12 +97,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="50dp"
                     android:text="Login : "/>
                 <TextView
+                    android:gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:id="@+id/profil_login"/>
             </LinearLayout>
             <LinearLayout
@@ -110,14 +110,15 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
+                    android:gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_marginLeft="50dp"
                     android:text="Mot de passe : "/>
                 <TextView
+                    android:gravity="left"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:id="@+id/profil_mdp"/>
             </LinearLayout>
             <Button

@@ -36,7 +36,7 @@ class ModifeFragment : Fragment() {
         val newIntent2: Intent = requireActivity().intent
         val iduserP2 = newIntent2.getIntExtra("idUser", 0)
 
-        val info = arrayOf("Nom","Prenom","AdresseMail","Password","login")
+        val info = arrayOf("Nom","Prénom","Adresse mail","Password","Login")
         val adp = ArrayAdapter(activity!!,android.R.layout.simple_spinner_dropdown_item,info)
         view.spinnerb.adapter = adp
 
@@ -57,7 +57,7 @@ class ModifeFragment : Fragment() {
                     password_layout.visibility = View.GONE
 
                 }
-                if(label == "Prenom")
+                if(label == "Prénom")
                 {
                     prenom_layout.visibility = View.VISIBLE
                     nom_layout.visibility = View.GONE
@@ -65,7 +65,7 @@ class ModifeFragment : Fragment() {
                     password_layout.visibility = View.GONE
                     login_layout.visibility =View.GONE
                 }
-                if(label == "AdresseMail")
+                if(label == "Adresse mail")
                 {
                     adresse_mail_layout.visibility = View.VISIBLE
                     nom_layout.visibility = View.GONE
@@ -81,7 +81,7 @@ class ModifeFragment : Fragment() {
                     adresse_mail_layout.visibility = View.GONE
                     login_layout.visibility =View.GONE
                 }
-                if(label == "login")
+                if(label == "Login")
                 {
                     login_layout.visibility =View.VISIBLE
                     password_layout.visibility =View.GONE
@@ -101,23 +101,41 @@ class ModifeFragment : Fragment() {
         view.modifieInfo.setOnClickListener(){
             if ( nom_layout.visibility == View.VISIBLE) {
                 databaseHandler.updateNom(nom_ed.text.toString(), iduserP2)
+                Toast.makeText(activity, " Nom mis à jour", Toast.LENGTH_SHORT).show()
+                passFragment()
             }
             if ( prenom_layout.visibility == View.VISIBLE) {
                 databaseHandler.updatePrenom(prenom_ed.text.toString(), iduserP2)
+                Toast.makeText(activity, " Prénom mis à jour", Toast.LENGTH_SHORT).show()
+                passFragment()
             }
             if( adresse_mail_layout.visibility == View.VISIBLE){
                 databaseHandler.updateAdresseM(adresse_mail_ed.text.toString(), iduserP2)
+                Toast.makeText(activity, " Adresse mail mis à jour", Toast.LENGTH_SHORT).show()
+                passFragment()
             }
             if( password_layout.visibility == View.VISIBLE){
                 databaseHandler.updatePassword(password_ed.text.toString(), iduserP2)
+                Toast.makeText(activity, " Mot de passe mis à jour", Toast.LENGTH_SHORT).show()
+                passFragment()
             }
             if( login_layout.visibility == View.VISIBLE){
                 databaseHandler.updateLogin(login_ed.text.toString(), iduserP2)
+                Toast.makeText(activity, " Login mis à jour", Toast.LENGTH_SHORT).show()
+                passFragment()
             }
         }
 
 
         return view
+    }
+
+    private fun passFragment(){
+        val fragmentManager = activity!!.supportFragmentManager
+        fragmentManager.beginTransaction().apply {
+            replace(R.id.container, ProfilFragment())
+            commit()
+        }
     }
 
 

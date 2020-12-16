@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="45dp"
         android:orientation="vertical">
 
         <Spinner
@@ -30,7 +30,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Name"
+                android:hint="Nom"
                 android:id="@+id/nom_ed"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -45,7 +45,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Prenom"
+                android:hint="Prénom"
                 android:id="@+id/prenom_ed"
                 android:inputType="text"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -89,7 +89,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Adresse_Mail"
+                android:hint="Adresse mail"
                 android:id="@+id/adresse_mail_ed"
                 android:inputType="textEmailAddress" />
 
@@ -101,6 +101,6 @@
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
             android:id="@+id/modifieInfo"
-            android:text="Modifie" />
+            android:text="Modifier" />
     </LinearLayout>
 </LinearLayout>

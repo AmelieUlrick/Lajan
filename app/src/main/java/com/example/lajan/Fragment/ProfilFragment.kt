@@ -60,8 +60,8 @@ class ProfilFragment : Fragment() {
                 commit() }
         }
 
-        val tt: List<Utilisateur> = databaseHandler.getAll(iduserP)
-        for(element in tt){
+        val user : List<Utilisateur> = databaseHandler.getAll(iduserP)
+        for(element in user){
             view.profil_nom.text = element.Nom
             view.profil_prenom.text = element.Prenom
             view.profil_adresseMail.text = element.adresse_mail

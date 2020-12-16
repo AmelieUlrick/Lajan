@@ -23,6 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Numéro de votre carte"
+                android:text="4970"
                 android:id="@+id/form_numCarte"
                 android:inputType="number"
                 android:maxLength="16"/>
@@ -38,6 +39,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Date Expiration"
+                android:text="0000"
                 android:id="@+id/form_dateExpiration"
                 android:inputType="number"
                 android:maxLength="6"/>

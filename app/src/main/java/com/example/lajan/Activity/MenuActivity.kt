@@ -5,12 +5,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import com.example.lajan.Bdd.DatabaseHelper
 import com.example.lajan.Fragment.CarteFragment
 import com.example.lajan.Fragment.ProfilFragment
-import com.example.lajan.MainActivity
 import com.example.lajan.R
 import kotlinx.android.synthetic.main.activity_menu.*
 import java.lang.System.exit

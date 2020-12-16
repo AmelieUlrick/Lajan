@@ -7,14 +7,18 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="#696969"
+    android:background="#89897f"
     tools:context=".Activity.RecupererMdp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginHorizontal="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="80dp"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Entrer votre adresse : "/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -35,7 +39,7 @@
             android:layout_marginTop="30dp"
             android:layout_gravity="center"
             android:id="@+id/btn_confirmeMdp"
-            android:text="Creer " />
+            android:text="Envoyer " />
 
     </LinearLayout>
 </LinearLayout>

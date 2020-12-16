@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#89897f"
     tools:context=".Fragment.VirementFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -22,10 +23,11 @@
                 android:layout_height="match_parent"
                 android:layout_marginRight="15dp"
                 android:gravity="center"
-                android:text="Virement de : "/>
+                android:text="Virement du compte : "/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:id="@+id/virement_nomCarte"
                 android:text="moi"/>
         </LinearLayout>
         <LinearLayout

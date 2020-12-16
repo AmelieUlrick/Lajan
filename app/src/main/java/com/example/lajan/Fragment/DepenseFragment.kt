@@ -39,6 +39,13 @@ class DepenseFragment : Fragment() {
             db.creerRecap(dataIdCpt,msg)
 
             Toast.makeText(activity, "Dépense enregistré", Toast.LENGTH_SHORT).show()
+
+            val pageListe = ListeCarte()
+            val fragmentManager = activity!!.supportFragmentManager
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.container, pageListe)
+                commit()
+            }
         }
 
         return view

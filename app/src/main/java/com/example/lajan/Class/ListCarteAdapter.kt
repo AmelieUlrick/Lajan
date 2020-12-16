@@ -45,13 +45,15 @@ class ListCarteAdapter(var list:List<Compte>, var listCB:List<CarteBancaire>) : 
                         val solde = listCpt.solde
                         val idCpt = listCpt.idCompte
                         val idUser = listCpt.keyUserCpt
+                        val nomCarte = listCpt.name_cpt
 
                         val activity = v!!.context as AppCompatActivity
 
                         val bundle = Bundle()
                         bundle.putDouble("solde", solde)
                         bundle.putInt("idCpt", idCpt)
-                        bundle.putInt("idUser",idUser)
+                        bundle.putInt("idUser",idUser )
+                        bundle.putString("nomCarte", nomCarte)
 
                         when(it.itemId){
                             R.id.menu_fct_virement ->{

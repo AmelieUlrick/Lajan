@@ -27,6 +27,9 @@ class VirementFragment : Fragment() {
         val dataSolde = args!!.getDouble("solde",0.0)
         val dataIdCpt = args!!.getInt("idCpt",0)
         val dataIdUser = args!!.getInt("idUser", 0)
+        val dataNomCarte = args!!.getString("nomCarte","")
+
+        view.virement_nomCarte.text = dataNomCarte
 
         val db = DatabaseHelper(activity!!)
 
@@ -43,7 +46,6 @@ class VirementFragment : Fragment() {
             spinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    Toast.makeText(activity, getString(R.string.app_name) + " " + listIntCpt[position], Toast.LENGTH_SHORT).show()
                     afficheSpinner.text = listIntCpt[position]
                 }
 
@@ -56,8 +58,8 @@ class VirementFragment : Fragment() {
 
             val montant = view.findViewById<EditText>(R.id.virement_montant)
             view.virement_btn.setOnClickListener {
-
-                Toast.makeText(activity!!, "regarde : " + afficheSpinner.text, Toast.LENGTH_LONG).show()
+                val nomCompteCrediter = afficheSpinner.text.toString()
+                Toast.makeText(activity!!, "Virement effectué du compte $dataNomCarte au compte $nomCompteCrediter ", Toast.LENGTH_LONG).show()
                 //Débiter le compte qui vire l'argent
                 val resDebit = debiter(montant.text.toString().toDouble(),dataSolde)
                 db.depense(resDebit,dataIdCpt)
@@ -69,6 +71,12 @@ class VirementFragment : Fragment() {
                 val resCredit = crediterCompte(montant.text.toString().toDouble(),soldeACrediter)
                 db.crediter(resCredit,trans)
 
+                val listCarte = ListeCarte()
+                val fragmentManager = activity!!.supportFragmentManager
+                fragmentManager.beginTransaction().apply {
+                    replace(R.id.container, listCarte)
+                    commit()
+                }
             }
 
         }

@@ -39,6 +39,13 @@ class CrediterFragment : Fragment() {
             val msg = "Compte créditer de $sommeCrediter euros"
             db.creerRecap(dataIdCpt, msg)
             Toast.makeText(activity, "Compte crédité", Toast.LENGTH_SHORT).show()
+
+            val pageListe = ListeCarte()
+            val fragmentManager = activity!!.supportFragmentManager
+            fragmentManager.beginTransaction().apply {
+                replace(R.id.container, pageListe)
+                commit()
+            }
         }
 
         return view

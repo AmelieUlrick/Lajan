@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#89897f"
     tools:context=".Fragment.FormulaireCarte">
 
     <!-- TODO: Update blank fragment layout -->
@@ -11,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_marginTop="60dp"
         android:layout_marginHorizontal="20dp">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -68,6 +70,8 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Créer"

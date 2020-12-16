@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#696969"
+    android:background="#89897f"
     android:orientation="vertical"
     tools:context=".Activity.MenuActivity">
 
@@ -18,10 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center"
         android:layout_marginTop="50dp"
         android:id="@+id/menu">
         <LinearLayout
             android:layout_marginTop="10dp"
+            android:layout_gravity="center"
             android:gravity="center"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -46,13 +48,6 @@
                 android:text=" nom"
                 android:id="@+id/menu_nom"/>
         </LinearLayout>
-        <TextView
-            android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Que souhaitez-vous faire ?"/>
-
     </LinearLayout>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -60,7 +55,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/bottomNav"
-        android:background="@color/startblue"
+        android:background="#4c4c45"
         app:menu="@menu/menu_bottom">
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 

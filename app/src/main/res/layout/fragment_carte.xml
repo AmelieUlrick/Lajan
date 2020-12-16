@@ -3,25 +3,43 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#696969"
+    android:background="#89897f"
     tools:context=".Fragment.CarteFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp"
         android:orientation="vertical">
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="affiche carte"
-            android:id="@+id/carte_affiche"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:textSize="25dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Que voulez-vous faire ?"
+                android:layout_marginBottom="20dp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:layout_gravity="center"
+                android:text="affiche carte"
+                android:id="@+id/carte_affiche"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ajouter une carte"
+                android:id="@+id/recycler_addCard"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_button"/>
+        </LinearLayout>
+
     </LinearLayout>
 
-    <Button
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:text="+"
-        android:id="@+id/recycler_addCard"
-        android:layout_gravity="right|center_vertical"
-        android:background="@drawable/custom_button"/>
+
 
 </FrameLayout>

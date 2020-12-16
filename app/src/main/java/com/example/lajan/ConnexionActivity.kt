@@ -42,16 +42,25 @@ class ConnexionActivity : AppCompatActivity() {
     fun seConnecter(){
         val db = DatabaseHelper(this)
 
-
         val idUser = db.getUser(cnx_login.text.toString(),cnx_mdp.text.toString())
+
+        if(db.getLogin(cnx_login.text.toString().trim()) == false || cnx_login.text.toString().isEmpty())
+        {
+            login_co_layout.error = getString(R.string.error_message_Login)
+            mdp_layout.isErrorEnabled = true
+        }
+        if(db.MdpForCo(cnx_mdp.text.toString().trim()) == false || cnx_mdp.text.toString().isEmpty())
+        {
+            mdp_layout.error = getString(R.string.error_message_Password2)
+            login_co_layout.isErrorEnabled = true
+        }
         if(db.connexion(cnx_login.text.toString().trim(),cnx_mdp.text.toString().trim())){
+            mdp_layout.isErrorEnabled = false
             val nav = Intent(this, MenuActivity::class.java)
             nav.putExtra("idUser",idUser)
             startActivity(nav)
-            Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
+            // Toast.makeText(this, "Connexion réussie", Toast.LENGTH_SHORT).show()
         }
-        else{
-            Toast.makeText(this, "Login ou mot de passe incorrect", Toast.LENGTH_SHORT).show()
-        }
+
     }
 }

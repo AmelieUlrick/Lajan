@@ -46,7 +46,8 @@ class ListeCarte : Fragment() {
                     res.getDouble(1),
                     res.getDouble(2),
                     res.getInt(3),
-                    res.getInt(4)))
+                    res.getInt(4),
+                    res.getString(5)))
             }
         }
 
@@ -58,7 +59,7 @@ class ListeCarte : Fragment() {
             }
             while(res.moveToNext()){
                 list2.add(CarteBancaire(res.getInt(0),
-                    res.getInt(1),
+                    res.getLong(1),
                     res.getInt(2),
                     res.getString(3),
                     res.getInt(4)))

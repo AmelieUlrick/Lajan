@@ -27,7 +27,7 @@ class DatabaseHelper(context: Context)
     //Création table Carte Bancaire
     private val CREATE_PRODUCTS_TABLE_CARTE = ("CREATE TABLE " +
             TABLE_CARTE + "(" +
-            COLUMN_ID_CARTE +  " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NUMERO_CARTE + " INTEGER, "
+            COLUMN_ID_CARTE +  " INTEGER PRIMARY KEY AUTOINCREMENT," + COLUMN_NUMERO_CARTE + " LONG, "
             + COLUMN_DATE_EXP + " INTEGER, "
             + COLUMN_TYPE + " TEXT, "
             + COLUMN_KEY_USER_CARTE + " INTEGER, "
@@ -41,6 +41,7 @@ class DatabaseHelper(context: Context)
             + COLUMN_DECOUVERT + " REAL, "
             + COLUMN_KEY_CARTE + " INTEGER, "
             + COLUMN_KEY_USER_COMPTE + " INTEGER, "
+            + COLUMN_NOM_CPT + " TEXT, "
             + " FOREIGN KEY ("+ COLUMN_KEY_CARTE+") REFERENCES "+ TABLE_CARTE +" ("+ COLUMN_ID_CARTE +")"
             + " FOREIGN KEY ("+ COLUMN_KEY_USER_COMPTE+") REFERENCES "+ TABLE_NAME +" ("+ COLUMN_ID +")"
             + ")"
@@ -200,6 +201,7 @@ class DatabaseHelper(context: Context)
         cv.put(COLUMN_DECOUVERT,compte.decouvert)
         cv.put(COLUMN_KEY_CARTE,compte.keyCarte)
         cv.put(COLUMN_KEY_USER_COMPTE,compte.keyUserCpt)
+        cv.put(COLUMN_NOM_CPT,compte.name_cpt)
 
         action.insert(TABLE_COMPTE, null, cv)
         action.close()
@@ -318,21 +320,23 @@ class DatabaseHelper(context: Context)
     }
 
     //Affiche la liste des id des comptes excepté celui de la personne connevtée
-    fun afficheIntCpt(idUser:Int, idCpt:Int) : ArrayList<Int>{
-        val listeCompte : ArrayList<Int> = ArrayList()
+    fun afficheIntCpt(idUser:Int, idCpt:Int) : ArrayList<String>{
+        val listeCompte : ArrayList<String> = ArrayList()
         val db = this.readableDatabase
 
         val query = " SELECT * FROM " + TABLE_COMPTE + " WHERE "+ COLUMN_KEY_USER_COMPTE +"=$idUser AND "+ COLUMN_ID_COMPTE +"!=$idCpt"
         val result = db.rawQuery(query,null)
         if(result.moveToFirst()){
             do{
-                listeCompte.add(result.getInt(0))
+                listeCompte.add(result.getString(5)
+                )
             }while(result.moveToNext())
         }
         result.close()
         db.close()
         return listeCompte
     }
+
 
     //Recherche le solde d'un compte à partir de l'id de la personne connectée
     fun recupSoldeCompte(cpt:Int): Double {
@@ -413,6 +417,57 @@ class DatabaseHelper(context: Context)
 
     }
 
+    fun getLogin(idlog:String): Boolean{
+        val db = this.readableDatabase
+        val cursor = db.query(
+                TABLE_NAME, null, "$COLUMN_LOGIN = ?", arrayOf(idlog.toString()),
+                null, null, null
+        )
+        val pronouns = cursor.count
+        //
+        if (pronouns > 0) {
+            return true
+        }
+        return false
+        cursor.close()
+        db.close()
+    }
+
+    fun MdpForCo(login: String): Boolean {
+        val db = this.readableDatabase
+        val cursor = db.query(
+                TABLE_NAME, null, "$COLUMN_LOGIN = ?", arrayOf(login),
+                null, null, null
+        )
+        val pronouns = cursor.count
+        //
+        if (pronouns > 0) {
+            return true
+        }
+        return false
+        cursor.close()
+        db.close()
+    }
+
+    fun afficheA(idUser:Int, nameCpt:String) : Int{
+        val db = this.readableDatabase
+        var cursor = db.query(TABLE_COMPTE,null,"$COLUMN_KEY_USER_COMPTE = ? AND $COLUMN_NOM_CPT = ?", arrayOf(idUser.toString(),nameCpt),
+                null,null,null
+        )
+        //val query = " SELECT * FROM " + TABLE_COMPTE + " WHERE "+ COLUMN_KEY_USER_COMPTE +"= $idUser AND "+ COLUMN_NOM_CPT +"= $nameCpt"
+        //val result = db.rawQuery(query,null)
+        if(cursor.getCount() < 1){
+            return 0
+
+        }
+        else
+        {   cursor.moveToLast()
+            val IdCompte: Int = cursor.getInt(cursor.getColumnIndex(COLUMN_ID_COMPTE))
+            return IdCompte
+        }
+
+    }
+
     companion object {
         private val DATABASE_VERSION = 1
 
@@ -449,5 +504,6 @@ class DatabaseHelper(context: Context)
         private val COLUMN_ID_RECAP = "idRecap"
         private val COLUMN_DESCRIPTIF = "descriptif"
         private val COLUMN_KEY_CPT_RECAP = "keyIdCpt"
+        private val COLUMN_NOM_CPT = "name_cpt"
     }
 }

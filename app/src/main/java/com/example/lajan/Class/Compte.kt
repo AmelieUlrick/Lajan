@@ -5,5 +5,6 @@ data class Compte(
     var solde : Double,
     var decouvert : Double,
     var keyCarte : Int,
-    var keyUserCpt : Int
+    var keyUserCpt : Int,
+    var name_cpt : String
 )

@@ -5,6 +5,10 @@
     <string name="error_message_Prenom">Enter Valid LastName</string>
     <string name="error_message_Password">Entrer Valid Password</string>
     <string name="error_message_Email"> Email is invalid or exist</string>
+    <string name="error_message_Login"> Login Incorrect</string>
+    <string name="error_message_Login2"> Login déja utilisé</string>
+    <string name="error_message_Password2"> Mot de Passe incorrect</string>
+    <string name="error_message_numero"> Numero de carte = 16 chiffres </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

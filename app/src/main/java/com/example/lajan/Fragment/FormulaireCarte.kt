@@ -34,13 +34,13 @@ class FormulaireCarte : Fragment() {
 
         //Création d'une Carte Bancaire et d'un compte ou celui-ci sera associé à la carte
         fun ajouterLaCarte(){
-            val carte = CarteBancaire(numeroCarte = form_numCarte.text.toString().toInt(),
+            val carte = CarteBancaire(numeroCarte = form_numCarte.text.toString().toLong(),
                     dateExpiration = form_dateExpiration.text.toString().toInt(),
                     typeCarte = form_type.text.toString().trim(),
                     keyUserCarte = dataIdUser)
             db.addCard(carte)
 
-            val compte = Compte(solde = 0.0, decouvert = 0.0, keyCarte = db.getIdCarte(), keyUserCpt = dataIdUser)
+            val compte = Compte(solde = 0.0, decouvert = 0.0, keyCarte = db.getIdCarte(), keyUserCpt = dataIdUser, name_cpt = form_name.text.toString().trim())
             db.addCompte(compte)
 
             Toast.makeText(activity, "Carte crée", Toast.LENGTH_SHORT).show()

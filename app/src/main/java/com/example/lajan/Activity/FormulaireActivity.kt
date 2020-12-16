@@ -84,7 +84,7 @@ class FormulaireActivity : AppCompatActivity() {
 
     fun AdressVef(): Boolean {
         val adresseMail = adresse_mail_ed.text.toString().trim()
-        if (adresseMail.isEmpty() || databaseHandler.addrForBdd(adresseMail)) {
+        if (adresseMail.isEmpty() || databaseHandler.addrForBdd(adresseMail) || !(Patterns.EMAIL_ADDRESS.matcher(adresseMail).matches())) {
             adresse_mail_layout.error = getString(R.string.error_message_Email)
             CacheClavier(adresse_mail_ed)
             return false
@@ -98,6 +98,19 @@ class FormulaireActivity : AppCompatActivity() {
     fun CacheClavier(view: View) {
         val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(view.windowToken, WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN)
+    }
+
+    fun LoginsVef(): Boolean {
+        val login = login_ed.text.toString().trim()
+        if (NomVef() && PrenomVef() && PasswordVef() && AdressVef() &&  LoginsVef()) {
+            login_layout.error = getString(R.string.error_message_Login2)
+            CacheClavier(login_layout)
+            return false
+        } else {
+            login_layout.isErrorEnabled = false
+
+        }
+        return true
     }
 
 }

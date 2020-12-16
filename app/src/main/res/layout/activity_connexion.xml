@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ConnexionActivity"
-    android:background="#696969"
     android:orientation="vertical">
 
     <TextView
@@ -22,18 +21,36 @@
         android:orientation="vertical"
         android:layout_marginHorizontal="20dp"
         android:layout_marginTop="100dp">
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Login"
-            android:inputType="text"
-            android:id="@+id/cnx_login"/>
-        <EditText
+            android:id="@+id/login_co_layout"
+            app:errorEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Login"
+                android:inputType="text"
+                android:id="@+id/cnx_login"
+                android:gravity="center_horizontal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="*******"
-            android:inputType="textPassword"
-            android:id="@+id/cnx_mdp"/>
+            android:id="@+id/mdp_layout"
+            app:passwordToggleEnabled="true"
+            app:errorEnabled="true">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:id="@+id/cnx_mdp"
+                android:gravity="center_horizontal" />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,18 +65,18 @@
             android:orientation="horizontal"
             android:layout_marginTop="20dp"
             android:gravity="center">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Vous n'avez pas de compte ? "/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Inscrivez-vous"
-            android:background="@android:color/transparent"
-            android:textColor="@color/black"
-            android:id="@+id/cnx_formulaire"/>
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Vous n'avez pas de compte ? "/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inscrivez-vous"
+                android:background="@android:color/transparent"
+                android:textColor="@color/black"
+                android:id="@+id/cnx_formulaire"/>
+        </LinearLayout>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -43,9 +43,8 @@ class VirementFragment : Fragment() {
             spinner.onItemSelectedListener = object :
                 AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
-                    val choix = listIntCpt[position]
                     Toast.makeText(activity, getString(R.string.app_name) + " " + listIntCpt[position], Toast.LENGTH_SHORT).show()
-                    afficheSpinner.text = listIntCpt[position].toString()
+                    afficheSpinner.text = listIntCpt[position]
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>) {
@@ -65,9 +64,10 @@ class VirementFragment : Fragment() {
 
                 //Chercher le solde du compte chosit dans le spinner
                 //Créditer le solde du montant entrer et update le compte
-                val soldeACrediter = db.recupSoldeCompte(afficheSpinner.text.toString().toInt())
+                val trans = db.afficheA(dataIdUser ,afficheSpinner.text.toString())
+                val soldeACrediter = db.recupSoldeCompte(trans)
                 val resCredit = crediterCompte(montant.text.toString().toDouble(),soldeACrediter)
-                db.crediter(resCredit,afficheSpinner.text.toString().toInt())
+                db.crediter(resCredit,trans)
 
             }
 

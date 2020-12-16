@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#696969"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".Fragment.FormulaireCarte">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,24 +12,61 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginHorizontal="20dp">
-        <EditText
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Numéro de votre carte"
-            android:id="@+id/form_numCarte"
-            android:inputType="number"/>
-        <EditText
+            android:id="@+id/form_numCarte_layout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Numéro de votre carte"
+                android:id="@+id/form_numCarte"
+                android:inputType="number"
+                android:maxLength="16"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Date Expiration"
-            android:id="@+id/form_dateExpiration"
-            android:inputType="number"/>
-        <EditText
+            android:id="@+id/form_dateExpiration_layout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Date Expiration"
+                android:id="@+id/form_dateExpiration"
+                android:inputType="number"
+                android:maxLength="6"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Type"
-            android:id="@+id/form_type"
-            android:inputType="text"/>
+            android:id="@+id/form_type_layout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type"
+                android:id="@+id/form_type"
+                android:inputType="text"
+                android:maxLength="10"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/form_name_layout">
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Name"
+                android:id="@+id/form_name"
+                android:inputType="text"
+                android:maxLength="10"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

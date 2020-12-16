@@ -13,6 +13,8 @@ import android.widget.Button
 import android.widget.Toast
 import com.example.lajan.Activity.MenuActivity
 import com.example.lajan.Bdd.DatabaseHelper
+import com.example.lajan.Class.Compte
+import com.example.lajan.Class.Utilisateur
 import com.example.lajan.R
 import com.example.lajan.Utils.Utils
 import kotlinx.android.synthetic.main.fragment_profil.*
@@ -50,10 +52,6 @@ class ProfilFragment : Fragment() {
             val imgByte = Utils.getBytes(bitmap)
             DatabaseHelper(activity!!).updateImage(imgByte,iduserP)
         }
-        view.deconnexion.setOnClickListener()
-        {
-            exit(0)
-        }
         view.modifie.setOnClickListener()
         {
             val fragment = ModifeFragment()
@@ -61,6 +59,12 @@ class ProfilFragment : Fragment() {
             fragmentManager.beginTransaction().apply { replace(R.id.container,fragment)
                 commit() }
         }
+
+        val tt: List<Utilisateur> = databaseHandler.getAll(iduserP)
+        for(e in tt){
+            Toast.makeText(activity, "${e.Prenom}", Toast.LENGTH_SHORT).show()
+        }
+
         return view
     }
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

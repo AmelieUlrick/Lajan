@@ -4,6 +4,7 @@ import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
+import android.database.sqlite.SQLiteException
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteQueryBuilder
 import com.example.lajan.Class.CarteBancaire
@@ -381,6 +382,36 @@ class DatabaseHelper(context: Context)
         db.close()
     }
 
+    fun getAll(id_user: Int):List<Utilisateur>{
+        // array of columns to fetch
+        //val columns = arrayOf(COLUMN_PRENOM, COLUMN_NOM, COLUMN_ADRESSE_MAIL, COLUMN_LOGIN, COLUMN_MDP)
+        val db = this.readableDatabase
+        val userList:ArrayList<Utilisateur> = ArrayList<Utilisateur>()
+        val query = "SELECT Prenom, Nom, adresse_mail, login, mdp FROM " + TABLE_NAME + " WHERE "+  COLUMN_ID + "=$id_user"
+        //val cursor = db.rawQuery(query, null)
+        var cursor: Cursor? = null
+        try{
+            cursor = db.rawQuery(query, null)
+        }catch (e: SQLiteException) {
+            db.execSQL(query)
+            return ArrayList()
+        }
+        //The sort order
+        if (cursor.moveToFirst()) {
+            do {
+                val user = Utilisateur(Prenom = cursor.getString(cursor.getColumnIndex(COLUMN_PRENOM)),
+                        Nom = cursor.getString(cursor.getColumnIndex(COLUMN_NOM)),
+                        adresse_mail = cursor.getString(cursor.getColumnIndex(COLUMN_ADRESSE_MAIL)),
+                        login = cursor.getString(cursor.getColumnIndex(COLUMN_LOGIN)),
+                        mdp = cursor.getString(cursor.getColumnIndex(COLUMN_MDP)))
+                userList.add(user)
+            } while (cursor.moveToNext())
+        }
+        cursor.close()
+        db.close()
+        return userList
+
+    }
 
     companion object {
         private val DATABASE_VERSION = 1
